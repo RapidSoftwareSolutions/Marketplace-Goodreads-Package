@@ -20,7 +20,7 @@ Read thousands of book reviews by your friends and other Goodreads members, keep
  |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ``` 
  
 ## GoodReads.getRequestToken
-Get Request Token using OAuth.
+Get Request Token for getAccessCredentials.
 
 | Field    | Type       | Description
 |----------|------------|----------
@@ -38,7 +38,7 @@ Get Access Credentials (accessToken/accessTokenSecret), after getRequestToken us
 | oauthTokenSecret| String     | The oauthTokenSecret Token obtained from getAccessCredentials.
 
 ## GoodReads.getAuthorizedUser
-Get an response with the Goodreads user_id for the user who authorized access using OAuth.
+Get an response with the Goodreads user_id for the user who authorized access.
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -87,7 +87,7 @@ Unfollow an author.
 | authorId         | String     | Goodreads Author id.
 
 ## GoodReads.getAuthorFollowingInformation
-Get a response using OAuth describing the association between a user and an author.
+Get a response using describing the association between a user and an author.
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -189,7 +189,7 @@ Shows events nearby the authenticating user or you can get a list of events near
 | ZIPcode    | String     | ZIP code.
 
 ## GoodReads.followUser
-Start following a user using OAuth. You'll need to register your app (required).
+Start following a user. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -200,7 +200,7 @@ Start following a user using OAuth. You'll need to register your app (required).
 | userId           | Number     | Goodreads user id of the user you want to stop following.
 
 ## GoodReads.unfollowUser
-Stop following a user using OAuth. You'll need to register your app (required).
+Stop following a user. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -211,7 +211,7 @@ Stop following a user using OAuth. You'll need to register your app (required).
 | userId           | Number     | Goodreads user id of the user you want to stop following.
 
 ## GoodReads.confirmFriendRequest
-Confirm a friend request for the current user using OAuth. You'll need to register your app (required).
+Confirm a friend request for the current user. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -222,7 +222,7 @@ Confirm a friend request for the current user using OAuth. You'll need to regist
 | friendRequestId  | Number     | friend request id.
 
 ## GoodReads.declineFriendRequest
-Decline a friend request for the current user using OAuth. You'll need to register your app (required).
+Decline a friend request for the current user. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -233,7 +233,7 @@ Decline a friend request for the current user using OAuth. You'll need to regist
 | friendRequestId  | Number     | friend request id.
 
 ## GoodReads.getFriendRequests
-Returns a XML with the current user's friend requests 'using OAuth. You'll need to register your app (required).
+Returns a XML with the current user's friend requests. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -244,7 +244,7 @@ Returns a XML with the current user's friend requests 'using OAuth. You'll need 
 | page             | Number     | Page: 1-N page of results to show (optional, default 1).
 
 ## GoodReads.addFriend
-Sends a friend request to a user using OAuth. You'll need to register your app (required).
+Sends a friend request to a user. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -255,7 +255,7 @@ Sends a friend request to a user using OAuth. You'll need to register your app (
 | friendId         | Number     | Goodreads user id for friend.
 
 ## GoodReads.joinGroup
-Let the current user join a given group using OAuth. You'll need to register your app (required).
+Let the current user join a given group. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
