@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/unfollowAnAuthor', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','authorId']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','followingId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,7 +12,7 @@ $app->post('/api/GoodReads/unfollowAnAuthor', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','authorId'=>'id'];
+    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','followingId'=>'id'];
     $optionalParams = [];
     $bodyParams = [
     ];
@@ -27,7 +27,6 @@ $app->post('/api/GoodReads/unfollowAnAuthor', function ($request, $response) {
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-
 
     $stack = GuzzleHttp\HandlerStack::create();
     $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
@@ -46,6 +45,7 @@ $app->post('/api/GoodReads/unfollowAnAuthor', function ($request, $response) {
         $resp = $client->delete($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
 
+
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';
             libxml_use_internal_errors(true);
@@ -57,9 +57,8 @@ $app->post('/api/GoodReads/unfollowAnAuthor', function ($request, $response) {
 
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
             if(empty($result['contextWrites']['to'])) {
-                $result['callback'] = 'error';
-                $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-                $result['contextWrites']['to']['status_msg'] = "Wrong params.";
+
+                $result['contextWrites']['to']['status_msg'] = "Api return no results.";
             }
         } else {
             $result['callback'] = 'error';

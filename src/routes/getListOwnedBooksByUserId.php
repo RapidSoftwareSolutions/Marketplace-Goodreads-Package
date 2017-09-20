@@ -47,14 +47,11 @@ $app->post('/api/GoodReads/getListOwnedBooksByUserId', function ($request, $resp
         $resp = $client->get($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
 
+        print_r($responseBody);
+        exit();
+
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';
-            libxml_use_internal_errors(true);
-            $responseBody =  simplexml_load_string($responseBody);
-            if($responseBody)
-            {
-                $responseBody = json_decode(json_encode((array) $responseBody), 1);
-            }
 
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
             if(empty($result['contextWrites']['to'])) {

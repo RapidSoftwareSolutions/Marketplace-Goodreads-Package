@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/getMemberByUsername', function ($request, $response) 
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','username']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','username']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -24,11 +24,21 @@ $app->post('/api/GoodReads/getMemberByUsername', function ($request, $response) 
 
     $query_str = "https://www.goodreads.com/user/show/{$data['username']}.xml";
 
-    
+
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = [];
-    $client = $this->httpClient;
+    $stack = GuzzleHttp\HandlerStack::create();
+    $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
+        'consumer_key'    => $data['key'],
+        'consumer_secret' => $data['secret'],
+        'token'           => $data['token'],
+        'token_secret'    => $data['tokenSecret']
+    ]);
+    $stack->push($middleware);
+    $client = new GuzzleHttp\Client([
+        'handler' => $stack,
+        'auth' => 'oauth'
+    ]);
 
     try {
         $resp = $client->get($query_str, $requestParams);
@@ -65,13 +75,8 @@ $app->post('/api/GoodReads/getMemberByUsername', function ($request, $response) 
         }
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-        libxml_use_internal_errors(true);
-        $xml =  simplexml_load_string($responseBody);
-        if($xml)
-        {
-            $out = json_decode(json_encode((array) $xml), 1);
-        }
-        $result['contextWrites']['to']['status_msg'] = $out;
+
+        $result['contextWrites']['to']['status_msg'] = 'Wrong params.';
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {
 

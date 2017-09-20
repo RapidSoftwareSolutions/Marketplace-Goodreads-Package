@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/getAuthorFollowingInformation', function ($request, $
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','authorId']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','followingId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,7 +12,7 @@ $app->post('/api/GoodReads/getAuthorFollowingInformation', function ($request, $
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','authorId'=>'id'];
+    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','followingId'=>'id'];
     $optionalParams = [];
     $bodyParams = [
     ];

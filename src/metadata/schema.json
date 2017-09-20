@@ -412,9 +412,9 @@
                     }
                 },
                 {
-                    "name": "authorId",
+                    "name": "followingId",
                     "type": "Number",
-                    "info": "Goodreads Author id.",
+                    "info": "Goodreads following id.",
                     "required": true,
                     "vendorSchema": {
                         "name": "id"
@@ -484,7 +484,7 @@
                     }
                 },
                 {
-                    "name": "authorId",
+                    "name": "followingId",
                     "type": "Number",
                     "info": "Goodreads Author id.",
                     "required": true,
@@ -2800,7 +2800,7 @@
                     "name": "rating",
                     "type": "Number",
                     "info": "Resource rating.",
-                    "required": true,
+                    "required": false,
                     "vendorSchema": {
                         "name": "rating[rating]"
                     }
@@ -5002,6 +5002,33 @@
                     }
                 },
                 {
+                    "name": "apiSecret",
+                    "type": "credentials",
+                    "info": "Api secret from app console.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "secret"
+                    }
+                },
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "The Access Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "token"
+                    }
+                },
+                {
+                    "name": "accessTokenSecret",
+                    "type": "String",
+                    "info": "The Access Secret Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "tokenSecret"
+                    }
+                },
+                {
                     "name": "memberId",
                     "type": "Number",
                     "info": "Goodreads user id.",
@@ -5035,6 +5062,33 @@
                     "required": true,
                     "vendorSchema": {
                         "name": "key"
+                    }
+                },
+                {
+                    "name": "apiSecret",
+                    "type": "credentials",
+                    "info": "Api secret from app console.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "secret"
+                    }
+                },
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "The Access Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "token"
+                    }
+                },
+                {
+                    "name": "accessTokenSecret",
+                    "type": "String",
+                    "info": "The Access Secret Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "tokenSecret"
                     }
                 },
                 {
@@ -5368,7 +5422,7 @@
                 {
                     "name": "bookId",
                     "type": "Number",
-                    "required": false,
+                    "required": true,
                     "info": "Id of the book being reviewed.",
                     "vendorSchema": {
                         "name": "user_status[book_id]"
@@ -5386,7 +5440,7 @@
                 {
                     "name": "percent",
                     "type": "Number",
-                    "required": false,
+                    "required": true,
                     "info": "Percent complete (use instead of page if appropriate).",
                     "vendorSchema": {
                         "name": "user_status[percent]"
