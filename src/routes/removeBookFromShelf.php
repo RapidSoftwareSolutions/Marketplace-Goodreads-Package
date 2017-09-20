@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/removeBookFromShelf', function ($request, $response) 
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','bookId']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','bookId',"shelfName"]);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,10 +12,10 @@ $app->post('/api/GoodReads/removeBookFromShelf', function ($request, $response) 
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','bookId'=>'book_id'];
+    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','bookId'=>'book_id','shelfName'=>'name'];
     $optionalParams = [];
     $bodyParams = [
-       'query' => ['book_id']
+       'query' => ['book_id','name']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);

@@ -22,12 +22,13 @@ $app->post('/api/GoodReads/followAnAuthor', function ($request, $response) {
     
 
 
-    $query_str = " http://www.goodreads.com/author_followings?id={$data['id']}&format=xml";
+    $query_str = "http://www.goodreads.com/author_followings?id={$data['id']}&format=xml";
 
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = [];
+
+
     $stack = GuzzleHttp\HandlerStack::create();
     $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
         'consumer_key'    => $data['key'],
@@ -78,12 +79,6 @@ $app->post('/api/GoodReads/followAnAuthor', function ($request, $response) {
         }
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-        libxml_use_internal_errors(true);
-        $xml =  simplexml_load_string($responseBody);
-        if($xml)
-        {
-            $out = json_decode(json_encode((array) $xml), 1);
-        }
         $result['contextWrites']['to']['status_msg'] = $out;
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {

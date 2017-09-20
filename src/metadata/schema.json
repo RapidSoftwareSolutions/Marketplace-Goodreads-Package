@@ -209,7 +209,7 @@
                 },
                 {
                     "name": "authorId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Goodreads Author id.",
                     "required": true,
                     "vendorSchema": {
@@ -266,7 +266,7 @@
                 },
                 {
                     "name": "authorId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Goodreads Author id.",
                     "required": true,
                     "vendorSchema": {
@@ -341,7 +341,7 @@
                 },
                 {
                     "name": "authorId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Goodreads Author id.",
                     "required": true,
                     "vendorSchema": {
@@ -350,7 +350,7 @@
                 }
             ],
             "vendorRequest": {
-                "url": " http:\/\/www.goodreads.com\/author_followings?id={$data['id']}&format=xml",
+                "url": "http:\/\/www.goodreads.com\/author_followings?id={$data['id']}&format=xml",
                 "method": "post",
                 "requestParameters": [],
                 "oauth1": {
@@ -413,7 +413,7 @@
                 },
                 {
                     "name": "authorId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Goodreads Author id.",
                     "required": true,
                     "vendorSchema": {
@@ -485,7 +485,7 @@
                 },
                 {
                     "name": "authorId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Goodreads Author id.",
                     "required": true,
                     "vendorSchema": {
@@ -577,7 +577,7 @@
                 },
                 {
                     "name": "bookId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Book IDs of books to look up.",
                     "required": true,
                     "vendorSchema": {
@@ -677,7 +677,7 @@
                 },
                 {
                     "name": "bookId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "A Goodreads internal book_id.",
                     "required": true,
                     "vendorSchema": {
@@ -754,7 +754,7 @@
                 },
                 {
                     "name": "userId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Single user id.",
                     "required": false,
                     "vendorSchema": {
@@ -1103,7 +1103,7 @@
                 },
                 {
                     "name": "page",
-                    "type": "String",
+                    "type": "Number",
                     "info": "1-N (default 1).",
                     "required": false
                 }
@@ -1889,7 +1889,7 @@
                 },
                 {
                     "name": "searchQuery",
-                    "type": "Number",
+                    "type": "String",
                     "info": "Which page of results to show (default 1).",
                     "required": true,
                     "vendorSchema": {
@@ -2672,7 +2672,7 @@
                 },
                 {
                     "name": "authorId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Id of the author.",
                     "required": false,
                     "vendorSchema": {
@@ -2681,7 +2681,7 @@
                 },
                 {
                     "name": "bookId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Id of the book from which the quote was taken.",
                     "required": false,
                     "vendorSchema": {
@@ -3967,7 +3967,7 @@
                 },
                 {
                     "name": "shelfName",
-                    "type": "Number",
+                    "type": "String",
                     "info": "Name of the shelf.",
                     "required": true,
                     "vendorSchema": {
@@ -4053,6 +4053,15 @@
                     "vendorSchema": {
                         "name": "book_id"
                     }
+                },
+                {
+                    "name": "shelfName",
+                    "type": "String",
+                    "info": "Name of the shelf.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "name"
+                    }
                 }
             ],
             "vendorRequest": {
@@ -4062,7 +4071,8 @@
                     {
                         "type": "query",
                         "parameters": [
-                            "book_id"
+                            "book_id",
+                            "name"
                         ]
                     }
                 ],
@@ -4140,14 +4150,14 @@
                     }
                 },
                 {
-                    "name": "shelvesIds",
+                    "name": "shelvesNames",
                     "type": "List",
                     "structure": {
-                        "name": "shelfId",
+                        "name": "shelfName",
                         "type": "Number",
-                        "info": "Single shelf id."
+                        "info": "Single shelf name."
                     },
-                    "info": "Ids of the shelfs.",
+                    "info": "Names of the shelfs.",
                     "required": true,
                     "vendorSchema": {
                         "name": "shelves",
@@ -4899,7 +4909,7 @@
                 },
                 {
                     "name": "shelfId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Id of the shelf.",
                     "required": true,
                     "vendorSchema": {
@@ -5092,7 +5102,7 @@
                 },
                 {
                     "name": "userId",
-                    "type": "String",
+                    "type": "Number",
                     "info": "Id of the user.",
                     "required": true,
                     "vendorSchema": {
