@@ -20,8 +20,14 @@ $app->post('/api/GoodReads/getGroupMembers', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
-    $data['q'] = \Models\Params::toString($data['q'], ' ');
+
+
+    if(!empty($data['q']))
+    {
+        $data['q'] = \Models\Params::toString($data['q'], ' ');
+
+    }
+
 
 
     $query_str = "https://www.goodreads.com/group/members/{$data['groupId']}.xml";
@@ -96,6 +102,7 @@ $app->post('/api/GoodReads/getGroupMembers', function ($request, $response) {
 
     }
 
+    exit();
     return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
 
 });

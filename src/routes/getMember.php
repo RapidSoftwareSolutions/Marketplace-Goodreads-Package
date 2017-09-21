@@ -12,17 +12,16 @@ $app->post('/api/GoodReads/getMember', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','memberId'=>'memberId'];
+    $requiredParams = ['apiKey'=>'key','memberId'=>'memberId','apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret'];
     $optionalParams = [];
-    $bodyParams = [
-    ];
+    $bodyParams = [];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
     
 
 
-    $query_str = "https://www.goodreads.com/user/show/{$data['memberId']}.xml";
+    $query_str = "https://www.goodreads.com/user/show/{$data['memberId']}.xml?key={$data['key']}";
 
     
 

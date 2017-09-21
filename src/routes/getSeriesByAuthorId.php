@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/getSeriesByAuthorId', function ($request, $response) 
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','authorId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,8 +12,8 @@ $app->post('/api/GoodReads/getSeriesByAuthorId', function ($request, $response) 
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key'];
-    $optionalParams = ['authorId'=>'authorId'];
+    $requiredParams = ['apiKey'=>'key','authorId'=>'authorId'];
+    $optionalParams = [];
     $bodyParams = [
     ];
 
@@ -64,6 +64,7 @@ $app->post('/api/GoodReads/getSeriesByAuthorId', function ($request, $response) 
         }
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
+        $out = \Models\normilizeJson::normalizeJsonErrorResponse($responseBody);
         $result['contextWrites']['to']['status_msg'] = $out;
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {
@@ -76,12 +77,6 @@ $app->post('/api/GoodReads/getSeriesByAuthorId', function ($request, $response) 
         }
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-        libxml_use_internal_errors(true);
-        $xml =  simplexml_load_string($responseBody);
-        if($xml)
-        {
-            $out = json_decode(json_encode((array) $xml), 1);
-        }
         $result['contextWrites']['to']['status_msg'] = $out;
 
     } catch (GuzzleHttp\Exception\ConnectException $exception) {

@@ -24,59 +24,55 @@
         "Create Goodreads application in console",
         "After creation app, you will receive apiKey and apiSecret"
     ],
-    "blocks": [
-        {
-            "name": "getRequestToken",
-            "description": "Get Request Token using OAuth.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
-                {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "Api secret from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "secret"
-                    }
-                }
-            ],
-            "vendorRequest": {
-                "url": "https:\/\/www.goodreads.com\/oauth\/request_token",
-                "method": "get",
-                "requestParameters": []
-            },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
-                {
-                    "name": "success",
-                    "info": "Success"
-                }
-            ]
+    "blocks": [{
+        "name": "getRequestToken",
+        "description": "Get Request Token using OAuth.",
+        "args": [{
+            "name": "apiKey",
+            "type": "credentials",
+            "info": "Api key from app console.",
+            "required": true,
+            "vendorSchema": {
+                "name": "key"
+            }
         },
+            {
+                "name": "apiSecret",
+                "type": "credentials",
+                "info": "Api secret from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "secret"
+                }
+            }
+        ],
+        "vendorRequest": {
+            "url": "https:\/\/www.goodreads.com\/oauth\/request_token",
+            "method": "get",
+            "requestParameters": []
+        },
+        "callbacks": [{
+            "name": "error",
+            "info": "Error"
+        },
+            {
+                "name": "success",
+                "info": "Success"
+            }
+        ]
+    },
         {
             "name": "getAccessCredentials",
             "description": "Get Access Credentials (accessToken\/accessTokenSecret), after getRequestToken use `\/oauth\/authorize` url.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -110,11 +106,10 @@
                 "method": "get",
                 "requestParameters": []
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -124,16 +119,15 @@
         {
             "name": "getAuthorizedUser",
             "description": "Get an response with the Goodreads user_id for the user who authorized access using OAuth.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -165,17 +159,15 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/api\/auth_user",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "secret",
-                            "token",
-                            "tokenSecret"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "secret",
+                        "token",
+                        "tokenSecret"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -183,11 +175,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -197,16 +188,15 @@
         {
             "name": "getAuthorBooks",
             "description": "Get a response with a paginated list of an authors books.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "authorId",
                     "type": "Number",
@@ -229,22 +219,19 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/author\/list.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "page",
-                            "id"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "page",
+                        "id"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -254,16 +241,15 @@
         {
             "name": "getAuthorInfo",
             "description": "Get a response with info about an author.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "authorId",
                     "type": "Number",
@@ -277,22 +263,19 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/author\/show.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "page",
-                            "id"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "page",
+                        "id"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -302,16 +285,15 @@
         {
             "name": "followAnAuthor",
             "description": "Make the signed-in user follow an author.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -360,11 +342,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -374,16 +355,15 @@
         {
             "name": "unfollowAnAuthor",
             "description": "Unfollow an author.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -432,11 +412,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -446,16 +425,15 @@
         {
             "name": "getAuthorFollowingInformation",
             "description": "Get a response using OAuth describing the association between a user and an author.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -504,11 +482,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -518,16 +495,15 @@
         {
             "name": "getBookIdByISBNs",
             "description": "Get Goodreads book IDs given one or more ISBNs. Response contains IDs without any markup.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "isbn",
                     "type": "String",
@@ -541,21 +517,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/book\/isbn_to_id",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "isbn"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "isbn"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -565,16 +538,15 @@
         {
             "name": "getWorkIdByBookId",
             "description": "Get Goodreads work IDs given one or more Goodreads book IDs. Response contains work IDs without any markup.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "bookId",
                     "type": "Number",
@@ -588,21 +560,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/book\/id_to_work_id",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "id"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "id"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -612,16 +581,15 @@
         {
             "name": "getReviewStatisticsByISBNs",
             "description": "Get review statistics for books given a list of ISBNs.You can mix ISBN10s and ISBN13s, but you'll receive a 422 error if you don't specify any, and you'll receive a 404 if none are found.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "isbns",
                     "type": "List",
@@ -641,21 +609,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/book\/review_counts.json",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "isbns"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "isbns"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -665,16 +630,15 @@
         {
             "name": "getBookReview",
             "description": "Get a response that contains embed code for the iframe reviews widget. The reviews widget shows an excerpt (first 300 characters) of the most popular reviews of a book for a given internal Goodreads book_id. Reviews of all known editions of the book are included.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "bookId",
                     "type": "Number",
@@ -707,23 +671,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/book\/show.json",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "id",
-                            "rating",
-                            "text_only"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "id",
+                        "rating",
+                        "text_only"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -733,16 +694,15 @@
         {
             "name": "getBookReviewsByISBN",
             "description": "Get a response that contains embed code for the iframe reviews widget that shows excerpts (first 300 characters) of the most popular reviews of a book for a given ISBN. The reviews are from all known editions of the book.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "isbn",
                     "type": "String",
@@ -771,23 +731,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/book\/isbn\/ISBN",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "id",
-                            "rating",
-                            "user_id"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "id",
+                        "rating",
+                        "user_id"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -797,16 +754,15 @@
         {
             "name": "getBookReviewsByTitle",
             "description": "Get a response that contains embed code for the iframe reviews widget, which shows an excerpt (first 300 characters) of the most popular reviews of a book for a given title\/author. The book shown will be the most popular book that matches all the keywords in the input string. The reviews are from all known editions of the book.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "authorName",
                     "type": "String",
@@ -832,24 +788,21 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/book\/title.json",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "id",
-                            "rating",
-                            "title",
-                            "author"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "id",
+                        "rating",
+                        "title",
+                        "author"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -859,16 +812,15 @@
         {
             "name": "createComment",
             "description": "Creates a new comment. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -971,16 +923,14 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/comment.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "id",
-                            "comment[body]",
-                            "type"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "id",
+                        "comment[body]",
+                        "type"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -988,11 +938,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1002,16 +951,15 @@
         {
             "name": "getCommentsList",
             "description": "Creates a new comment. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -1111,16 +1059,14 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/comment.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "id",
-                            "page",
-                            "type"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "id",
+                        "page",
+                        "type"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -1128,11 +1074,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1142,16 +1087,15 @@
         {
             "name": "getEventsInYourArea",
             "description": "Shows events nearby the authenticating user or you can get a list of events near a location by passing lat\/lng coordinates.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "coordinates",
                     "type": "Map",
@@ -1186,23 +1130,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/event\/index.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "search[country_code]",
-                            "search[postal_code]",
-                            "title"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "search[country_code]",
+                        "search[postal_code]",
+                        "title"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1212,16 +1153,15 @@
         {
             "name": "followUser",
             "description": "Start following a user using OAuth. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -1258,7 +1198,7 @@
             ],
             "vendorRequest": {
                 "url": "http:\/\/www.goodreads.com\/user\/{$data['userId']}\/followers?format=xml",
-                "method": "get",
+                "method": "post",
                 "requestParameters": [],
                 "oauth1": {
                     "ck": "{$data['key']}",
@@ -1267,11 +1207,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1281,16 +1220,15 @@
         {
             "name": "unfollowUser",
             "description": "Stop following a user using OAuth. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -1336,11 +1274,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1350,16 +1287,15 @@
         {
             "name": "confirmFriendRequest",
             "description": "Confirm a friend request for the current user using OAuth. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -1400,14 +1336,12 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/friend\/confirm_request.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "id"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "id"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -1415,11 +1349,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1429,16 +1362,15 @@
         {
             "name": "declineFriendRequest",
             "description": "Decline a friend request for the current user using OAuth. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -1479,14 +1411,12 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/friend\/confirm_request.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "id"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "id"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -1494,11 +1424,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1508,16 +1437,15 @@
         {
             "name": "getFriendRequests",
             "description": "Returns a XML with the current user's friend requests 'using OAuth. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -1555,14 +1483,12 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/friend\/requests.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "page"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "page"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -1570,11 +1496,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1584,16 +1509,15 @@
         {
             "name": "addFriend",
             "description": "Sends a friend request to a user using OAuth. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -1634,14 +1558,12 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/friend\/add_as_friend.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "id"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "id"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -1649,11 +1571,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1663,16 +1584,15 @@
         {
             "name": "joinGroup",
             "description": "Let the current user join a given group using OAuth. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -1721,11 +1641,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1735,16 +1654,15 @@
         {
             "name": "getUserGroups",
             "description": "Returns list of groups the user specified by id belongs to.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "userId",
                     "type": "Number",
@@ -1767,21 +1685,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/group\/list\/{$data['userId']}.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "sort",
-                            "key"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "sort",
+                        "key"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1791,16 +1706,15 @@
         {
             "name": "getGroupMembers",
             "description": "Returns list of groups the user specified by id belongs to.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "groupId",
                     "type": "Number",
@@ -1845,23 +1759,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/group\/members\/{$data['groupId']}.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "sort",
-                            "key",
-                            "q",
-                            "page"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "sort",
+                        "key",
+                        "q",
+                        "page"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1871,16 +1782,15 @@
         {
             "name": "getGroupBySearchQuery",
             "description": "Search group titles and descriptions for the given string.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "page",
                     "type": "Number",
@@ -1900,22 +1810,19 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/group\/search.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "q",
-                            "page"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "q",
+                        "page"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1925,16 +1832,15 @@
         {
             "name": "getGroup",
             "description": "Get info about a group by id.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "sort",
                     "type": "Select",
@@ -1967,22 +1873,19 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/group\/show\/{$data['groupId']}.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "sort",
-                            "order"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "sort",
+                        "order"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -1992,16 +1895,15 @@
         {
             "name": "GetlistopiasByBookId",
             "description": "Get the listopia lists for a given book.Version of list\/book.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "bookId",
                     "type": "Number",
@@ -2012,20 +1914,17 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/list\/book\/{$data['bookId']}.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2035,16 +1934,15 @@
         {
             "name": "getCurrentUsersNotifications",
             "description": "Viewing any new notifications here will mark them as `viewed`.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -2082,14 +1980,12 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/notifications.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "page"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "page"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -2097,11 +1993,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2111,16 +2006,15 @@
         {
             "name": "addOwnedBook",
             "description": "Adds a book to user's list of owned books.You'll need to register your app (required). ",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -2214,19 +2108,17 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/owned_books.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "owned_book[unique_code]",
-                            "owned_book[original_purchase_location]",
-                            "owned_book[original_purchase_date]",
-                            "owned_book[condition_description]",
-                            "owned_book[condition_code]",
-                            "owned_book[book_id]"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "owned_book[unique_code]",
+                        "owned_book[original_purchase_location]",
+                        "owned_book[original_purchase_date]",
+                        "owned_book[condition_description]",
+                        "owned_book[condition_code]",
+                        "owned_book[book_id]"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -2234,11 +2126,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2248,16 +2139,15 @@
         {
             "name": "getListOwnedBooksByUserId",
             "description": "List books owned by a user.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -2304,15 +2194,13 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/owned_books\/user",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "page",
-                            "id"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "page",
+                        "id"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -2320,11 +2208,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2334,16 +2221,15 @@
         {
             "name": "getOwnedBooks",
             "description": "List books owned by a user.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -2392,11 +2278,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2406,16 +2291,15 @@
         {
             "name": "updateOwnedBook",
             "description": "Updates a book a user owns.You'll need to register your app (required). ",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -2518,19 +2402,17 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/owned_books\/update\/{$data['id']}",
                 "method": "put",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "owned_book[unique_code]",
-                            "owned_book[original_purchase_location]",
-                            "owned_book[original_purchase_date]",
-                            "owned_book[condition_description]",
-                            "owned_book[condition_code]",
-                            "owned_book[book_id]"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "owned_book[unique_code]",
+                        "owned_book[original_purchase_location]",
+                        "owned_book[original_purchase_date]",
+                        "owned_book[condition_description]",
+                        "owned_book[condition_code]",
+                        "owned_book[book_id]"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -2538,11 +2420,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2552,16 +2433,15 @@
         {
             "name": "deleteOwnedBook",
             "description": "Deletes a book a user owns. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -2610,11 +2490,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2624,16 +2503,15 @@
         {
             "name": "addQuote",
             "description": "If you don't specify an author_id, it will try to look one up based on the author_name you provide. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -2725,19 +2603,17 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/quotes",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "quote[author_name]",
-                            "quote[author_id]",
-                            "quote[book_id]",
-                            "quote[body]",
-                            "quote[tags]",
-                            "isbn"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "quote[author_name]",
+                        "quote[author_id]",
+                        "quote[book_id]",
+                        "quote[body]",
+                        "quote[tags]",
+                        "isbn"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -2745,11 +2621,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2759,16 +2634,15 @@
         {
             "name": "likeResource",
             "description": "Like a resource (e.g. review or status update). You'll need to register your app (required). ",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -2827,16 +2701,14 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/rating",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "rating[resource_type]",
-                            "rating[resource_id]",
-                            "rating[rating]"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "rating[resource_type]",
+                        "rating[resource_id]",
+                        "rating[rating]"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -2844,11 +2716,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2858,16 +2729,15 @@
         {
             "name": "unlikeResource",
             "description": "Unlike a resource (e.g. review or status update). You'll need to register your app (required). ",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -2908,14 +2778,12 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/rating",
                 "method": "delete",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "id"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "id"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -2923,11 +2791,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2937,16 +2804,15 @@
         {
             "name": "getUsersReadStatus",
             "description": "Get information about a read status update.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "statusId",
                     "type": "Number",
@@ -2962,11 +2828,10 @@
                 "method": "get",
                 "requestParameters": []
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -2976,16 +2841,15 @@
         {
             "name": "getRecommendation",
             "description": "Get information about a particular recommendation that one user made for another. Includes comments and likes. You'll need to register your app (required).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -3034,11 +2898,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3048,16 +2911,15 @@
         {
             "name": "createReview",
             "description": "Add book reviews for members. You'll need to register your app (required). ",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -3134,18 +2996,16 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/review.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "book_id",
-                            "review[review]",
-                            "review[rating]",
-                            "review[read_at]",
-                            "shelf"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "book_id",
+                        "review[review]",
+                        "review[rating]",
+                        "review[read_at]",
+                        "shelf"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -3153,11 +3013,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3167,16 +3026,15 @@
         {
             "name": "updateReview",
             "description": "Edit a book review.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -3271,19 +3129,17 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/{$data['review_id']}.xml",
                 "method": "put",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "finished",
-                            "book_id",
-                            "review[review]",
-                            "review[rating]",
-                            "review[read_at]",
-                            "shelf"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "finished",
+                        "book_id",
+                        "review[review]",
+                        "review[rating]",
+                        "review[read_at]",
+                        "shelf"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -3291,11 +3147,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3305,16 +3160,15 @@
         {
             "name": "deleteReview",
             "description": "Deletes a book review.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -3363,11 +3217,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3377,14 +3230,40 @@
         {
             "name": "getBooksOnMembersShelf",
             "description": "Get the books on a members shelf. Customize the feed with the below variables. Viewing members with profiles who have set them as visible to members only or just their friends.",
-            "args": [
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
-                    "name": "apiKey",
+                    "name": "apiSecret",
                     "type": "credentials",
-                    "info": "Api key from app console.",
+                    "info": "Api secret from app console.",
                     "required": true,
                     "vendorSchema": {
-                        "name": "key"
+                        "name": "secret"
+                    }
+                },
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "The Access Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "token"
+                    }
+                },
+                {
+                    "name": "accessTokenSecret",
+                    "type": "String",
+                    "info": "The Access Secret Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "tokenSecret"
                     }
                 },
                 {
@@ -3488,27 +3367,24 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/review\/list",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "v",
-                            "id",
-                            "shelf",
-                            "sort",
-                            "search[query]",
-                            "order",
-                            "page",
-                            "per_page"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "v",
+                        "id",
+                        "shelf",
+                        "sort",
+                        "search[query]",
+                        "order",
+                        "page",
+                        "per_page"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3518,14 +3394,40 @@
         {
             "name": "getAllRecentReviews",
             "description": "Get a response with the most recently added reviews from all members.",
-            "args": [
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
-                    "name": "apiKey",
+                    "name": "apiSecret",
                     "type": "credentials",
-                    "info": "Api key from app console.",
+                    "info": "Api secret from app console.",
                     "required": true,
                     "vendorSchema": {
-                        "name": "key"
+                        "name": "secret"
+                    }
+                },
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "The Access Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "token"
+                    }
+                },
+                {
+                    "name": "accessTokenSecret",
+                    "type": "String",
+                    "info": "The Access Secret Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "tokenSecret"
                     }
                 }
             ],
@@ -3534,11 +3436,10 @@
                 "method": "get",
                 "requestParameters": []
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3548,14 +3449,40 @@
         {
             "name": "getReview",
             "description": "Get a response that contains the review and rating.",
-            "args": [
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
-                    "name": "apiKey",
+                    "name": "apiSecret",
                     "type": "credentials",
-                    "info": "Api key from app console.",
+                    "info": "Api secret from app console.",
                     "required": true,
                     "vendorSchema": {
-                        "name": "key"
+                        "name": "secret"
+                    }
+                },
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "The Access Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "token"
+                    }
+                },
+                {
+                    "name": "accessTokenSecret",
+                    "type": "String",
+                    "info": "The Access Secret Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "tokenSecret"
                     }
                 },
                 {
@@ -3577,21 +3504,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/review\/show.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "id",
-                            "page"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "id",
+                        "page"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3601,16 +3525,15 @@
         {
             "name": "getUserReviewForBook",
             "description": "Get a response that contains the review and rating for the specified book and user.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "userId",
                     "type": "Number",
@@ -3646,23 +3569,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/review\/show_by_user_and_book.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "user_id",
-                            "book_id",
-                            "include_review_on_work",
-                            "key"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "user_id",
+                        "book_id",
+                        "include_review_on_work",
+                        "key"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3672,16 +3592,15 @@
         {
             "name": "getAuthorByName",
             "description": "Get an response with the Goodreads url for the given author name.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "authorName",
                     "type": "String",
@@ -3695,20 +3614,17 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/api\/author_url\/{$data['name']}",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3718,16 +3634,15 @@
         {
             "name": "getBooksByMultipleFields",
             "description": "Get a response with the most popular books for the given query. This will search all books in the title\/author\/ISBN fields and show matches, sorted by popularity on Goodreads. There will be cases where a result is shown on the Goodreads site, but not through the API. This happens when the result is an Amazon-only edition and we have to honor Amazon's terms of service.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "title",
                     "type": "String",
@@ -3779,22 +3694,19 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/search\/index.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "search[field]",
-                            "page"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "search[field]",
+                        "page"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3804,40 +3716,36 @@
         {
             "name": "getSeries",
             "description": "Info on a series.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "seriesId",
                     "type": "Number",
                     "info": "Id of the series.",
-                    "required": false
+                    "required": true
                 }
             ],
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/series\/show\/{$data['seriesId']}.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3847,21 +3755,20 @@
         {
             "name": "getSeriesByAuthorId",
             "description": "List of all series by an author.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "authorId",
                     "type": "Number",
                     "info": "Id of the author.",
-                    "required": false
+                    "required": true
                 }
             ],
             "vendorRequest": {
@@ -3869,11 +3776,10 @@
                 "method": "get",
                 "requestParameters": []
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3883,21 +3789,20 @@
         {
             "name": "getSeriesByWorkId",
             "description": "List of all series a work is in.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "workId",
                     "type": "Number",
                     "info": "Id of the work.",
-                    "required": false
+                    "required": true
                 }
             ],
             "vendorRequest": {
@@ -3905,11 +3810,10 @@
                 "method": "get",
                 "requestParameters": []
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -3919,16 +3823,15 @@
         {
             "name": "addBookToShelf",
             "description": "Add a book to a shelf.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -3978,15 +3881,13 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/shelf\/add_to_shelf.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "name",
-                            "book_id"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "name",
+                        "book_id"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -3994,11 +3895,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4008,16 +3908,15 @@
         {
             "name": "removeBookFromShelf",
             "description": "Remove a book from a shelf.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -4067,15 +3966,13 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/shelf\/add_to_shelf.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "book_id",
-                            "name"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "book_id",
+                        "name"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -4083,11 +3980,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4097,16 +3993,15 @@
         {
             "name": "addBooksToMultipleShelves",
             "description": "Add a list of books to many current user's shelves.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -4168,15 +4063,13 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/shelf\/add_books_to_shelves.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "bookids",
-                            "shelves"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "bookids",
+                        "shelves"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -4184,11 +4077,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4198,16 +4090,15 @@
         {
             "name": "getUserShelves",
             "description": "Lists shelves for a user.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "page",
                     "type": "Number",
@@ -4227,22 +4118,19 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/shelf\/list.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "user_id",
-                            "page"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "user_id",
+                        "page"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4252,16 +4140,15 @@
         {
             "name": "createTopic",
             "description": "Create a new topic.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -4379,21 +4266,19 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/topic.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "topic[subject_type]",
-                            "topic[subject_id]",
-                            "topic[folder_id]",
-                            "topic[title]",
-                            "topic[question_flag]",
-                            "comment[body_usertext]",
-                            "update_feed",
-                            "digest"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "topic[subject_type]",
+                        "topic[subject_id]",
+                        "topic[folder_id]",
+                        "topic[title]",
+                        "topic[question_flag]",
+                        "comment[body_usertext]",
+                        "update_feed",
+                        "digest"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -4401,11 +4286,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4414,17 +4298,16 @@
         },
         {
             "name": "getListTopicsByGroupFolder",
-            "description": "Returns a list of topics in a group's folder specified either by folder id or by group id. ",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "description": "Returns a list of topics in a group's folder specified either by group id.",
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "groupId",
                     "type": "Number",
@@ -4438,7 +4321,7 @@
                     "name": "folderId",
                     "type": "Number",
                     "info": "If id is non-zero, this param is ignored. Note: may return 404 if there are no topics in the general folder for the specified group.",
-                    "required": true,
+                    "required": false,
                     "vendorSchema": {
                         "name": "folder_id"
                     }
@@ -4473,27 +4356,24 @@
                 }
             ],
             "vendorRequest": {
-                "url": "https:\/\/www.goodreads.com\/topic\/group_folder\/{$data['folder_id']}",
+                "url": "https:\/\/www.goodreads.com\/topic\/group_folder\/{$data['group_id']}",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "page",
-                            "sort",
-                            "order",
-                            "folder_id",
-                            "group_id"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "page",
+                        "sort",
+                        "order",
+                        "folder_id",
+                        "group_id"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4503,16 +4383,15 @@
         {
             "name": "getTopic",
             "description": "Version of topic\/show.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "topicId",
                     "type": "Number",
@@ -4528,11 +4407,10 @@
                 "method": "get",
                 "requestParameters": []
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4542,14 +4420,40 @@
         {
             "name": "getTopicsWithUnreadComments",
             "description": "Get a list of topics from a specified group that have comments added since the last time the user viewed the topic.",
-            "args": [
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
-                    "name": "apiKey",
+                    "name": "apiSecret",
                     "type": "credentials",
-                    "info": "Api key from app console.",
+                    "info": "Api secret from app console.",
                     "required": true,
                     "vendorSchema": {
-                        "name": "key"
+                        "name": "secret"
+                    }
+                },
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "The Access Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "token"
+                    }
+                },
+                {
+                    "name": "accessTokenSecret",
+                    "type": "String",
+                    "info": "The Access Secret Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "tokenSecret"
                     }
                 },
                 {
@@ -4603,24 +4507,21 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/topic\/unread_group\/{$data['group_id']}",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "key",
-                            "page",
-                            "sort",
-                            "order",
-                            "viewed"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "key",
+                        "page",
+                        "sort",
+                        "order",
+                        "viewed"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4630,16 +4531,15 @@
         {
             "name": "getFriendUpdates",
             "description": "Get your friend updates (the same data you see on your homepage).",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -4708,16 +4608,14 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/updates\/friends.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "update_filter",
-                            "update",
-                            "max_updates"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "update_filter",
+                        "update",
+                        "max_updates"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -4725,11 +4623,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4740,16 +4637,15 @@
         {
             "name": "createBookShelf",
             "description": "Add book shelves for members.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -4779,7 +4675,7 @@
                 },
                 {
                     "name": "shelfName",
-                    "type": "Select",
+                    "type": "String",
                     "info": "Name of the new shelf.",
                     "required": true,
                     "vendorSchema": {
@@ -4829,17 +4725,15 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/user_shelves.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "user_shelf[featured]",
-                            "user_shelf[sortable_flag]",
-                            "user_shelf[exclusive_flag]",
-                            "user_shelf[name]"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "user_shelf[featured]",
+                        "user_shelf[sortable_flag]",
+                        "user_shelf[exclusive_flag]",
+                        "user_shelf[name]"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -4847,11 +4741,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4861,16 +4754,15 @@
         {
             "name": "updateBookShelf",
             "description": "Add book shelves for members.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -4959,17 +4851,15 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/user_shelves\/{$data['shelf_id']}.xml",
                 "method": "put",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "user_shelf[featured]",
-                            "user_shelf[sortable_flag]",
-                            "user_shelf[exclusive_flag]",
-                            "user_shelf[name]"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "user_shelf[featured]",
+                        "user_shelf[sortable_flag]",
+                        "user_shelf[exclusive_flag]",
+                        "user_shelf[name]"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -4977,11 +4867,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -4991,16 +4880,15 @@
         {
             "name": "getMember",
             "description": "Get a response with the public information about the given Goodreads user.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -5040,74 +4928,10 @@
                 "method": "get",
                 "requestParameters": []
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
-                {
-                    "name": "success",
-                    "info": "Success"
-                }
-            ]
-        },
-        {
-            "name": "getMemberByUsername",
-            "description": "Get a response with the public information about the given Goodreads user.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
-                {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "Api secret from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "secret"
-                    }
-                },
-                {
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The Access Token obtained from getAccessCredentials.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "token"
-                    }
-                },
-                {
-                    "name": "accessTokenSecret",
-                    "type": "String",
-                    "info": "The Access Secret Token obtained from getAccessCredentials.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "tokenSecret"
-                    }
-                },
-                {
-                    "name": "username",
-                    "type": "Number",
-                    "info": "Goodreads member username.",
-                    "required": true
-                }
-            ],
-            "vendorRequest": {
-                "url": "https:\/\/www.goodreads.com\/user\/show\/{$data['username']}.xml",
-                "method": "get",
-                "requestParameters": []
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
                 {
                     "name": "success",
                     "info": "Success"
@@ -5117,16 +4941,15 @@
         {
             "name": "compareBooksWithMember",
             "description": "Get a response with stats comparing your books to another member's.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -5175,11 +4998,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -5189,14 +5011,40 @@
         {
             "name": "getUsersFollowers",
             "description": "Get a response with the given user's followers.",
-            "args": [
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
-                    "name": "apiKey",
+                    "name": "apiSecret",
                     "type": "credentials",
-                    "info": "Api key from app console.",
+                    "info": "Api secret from app console.",
                     "required": true,
                     "vendorSchema": {
-                        "name": "key"
+                        "name": "secret"
+                    }
+                },
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "The Access Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "token"
+                    }
+                },
+                {
+                    "name": "accessTokenSecret",
+                    "type": "String",
+                    "info": "The Access Secret Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "tokenSecret"
                     }
                 },
                 {
@@ -5215,21 +5063,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/user\/{$data['userId']}\/followers.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "page",
-                            "key"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "page",
+                        "key"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -5239,14 +5084,40 @@
         {
             "name": "getPeopleUserIsFollowing",
             "description": "Get a response with people the given user is following.",
-            "args": [
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
-                    "name": "apiKey",
+                    "name": "apiSecret",
                     "type": "credentials",
-                    "info": "Api key from app console.",
+                    "info": "Api secret from app console.",
                     "required": true,
                     "vendorSchema": {
-                        "name": "key"
+                        "name": "secret"
+                    }
+                },
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "The Access Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "token"
+                    }
+                },
+                {
+                    "name": "accessTokenSecret",
+                    "type": "String",
+                    "info": "The Access Secret Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "tokenSecret"
                     }
                 },
                 {
@@ -5265,21 +5136,18 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/user\/{$data['userId']}\/following.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "page",
-                            "key"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "page",
+                        "key"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -5289,16 +5157,15 @@
         {
             "name": "getUserFriends",
             "description": "Get an xml response with the given user's friends.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -5356,23 +5223,20 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/friend\/user.xml",
                 "method": "get",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "page",
-                            "key",
-                            "id",
-                            "sort"
-                        ]
-                    }
-                ]
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "page",
+                        "key",
+                        "id",
+                        "sort"
+                    ]
+                }]
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -5382,16 +5246,15 @@
         {
             "name": "updateUserStatus",
             "description": "Add status updates for members.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -5440,7 +5303,7 @@
                 {
                     "name": "percent",
                     "type": "Number",
-                    "required": true,
+                    "required": false,
                     "info": "Percent complete (use instead of page if appropriate).",
                     "vendorSchema": {
                         "name": "user_status[percent]"
@@ -5459,17 +5322,15 @@
             "vendorRequest": {
                 "url": "https:\/\/www.goodreads.com\/user_status.xml",
                 "method": "post",
-                "requestParameters": [
-                    {
-                        "type": "query",
-                        "parameters": [
-                            "user_status[book_id]",
-                            "user_status[page]",
-                            "user_status[percent]",
-                            "user_status[body]"
-                        ]
-                    }
-                ],
+                "requestParameters": [{
+                    "type": "query",
+                    "parameters": [
+                        "user_status[book_id]",
+                        "user_status[page]",
+                        "user_status[percent]",
+                        "user_status[body]"
+                    ]
+                }],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -5477,11 +5338,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -5491,16 +5351,15 @@
         {
             "name": "deleteUserStatus",
             "description": "Delete status updates for members.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "apiSecret",
                     "type": "credentials",
@@ -5549,11 +5408,10 @@
                     "tokenSecret": "{$data['tokenSecret']}"
                 }
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -5563,16 +5421,15 @@
         {
             "name": "getUserStatus",
             "description": "Get information about a user status update.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "userStatusId",
                     "type": "Number",
@@ -5588,11 +5445,10 @@
                 "method": "post",
                 "requestParameters": []
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -5602,16 +5458,15 @@
         {
             "name": "getUserRecentStatus",
             "description": "Get information about a user status update.",
-            "args": [
-                {
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "Api key from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "key"
-                    }
-                },
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
                     "name": "userStatusId",
                     "type": "Number",
@@ -5627,11 +5482,10 @@
                 "method": "get",
                 "requestParameters": []
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"
@@ -5641,14 +5495,40 @@
         {
             "name": "getAllEditionsByWork",
             "description": "List of all the available editions of a particular work. This API requires extra permission.",
-            "args": [
+            "args": [{
+                "name": "apiKey",
+                "type": "credentials",
+                "info": "Api key from app console.",
+                "required": true,
+                "vendorSchema": {
+                    "name": "key"
+                }
+            },
                 {
-                    "name": "apiKey",
+                    "name": "apiSecret",
                     "type": "credentials",
-                    "info": "Api key from app console.",
+                    "info": "Api secret from app console.",
                     "required": true,
                     "vendorSchema": {
-                        "name": "key"
+                        "name": "secret"
+                    }
+                },
+                {
+                    "name": "accessToken",
+                    "type": "String",
+                    "info": "The Access Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "token"
+                    }
+                },
+                {
+                    "name": "accessTokenSecret",
+                    "type": "String",
+                    "info": "The Access Secret Token obtained from getAccessCredentials.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "tokenSecret"
                     }
                 },
                 {
@@ -5666,11 +5546,10 @@
                 "method": "get",
                 "requestParameters": []
             },
-            "callbacks": [
-                {
-                    "name": "error",
-                    "info": "Error"
-                },
+            "callbacks": [{
+                "name": "error",
+                "info": "Error"
+            },
                 {
                     "name": "success",
                     "info": "Success"

@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/getBooksOnMembersShelf', function ($request, $respons
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','variable','userId']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','variable','userId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,7 +12,7 @@ $app->post('/api/GoodReads/getBooksOnMembersShelf', function ($request, $respons
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','variable'=>'v','userId'=>'id'];
+    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','variable'=>'v','userId'=>'id'];
     $optionalParams = ['shelf'=>'shelf','sort'=>'sort','searchQuery'=>'search[query]','order'=>'order','page'=>'page','perPage'=>'per_page'];
     $bodyParams = [
        'query' => ['v','id','shelf','sort','search[query]','order','page','per_page']
@@ -37,12 +37,26 @@ $app->post('/api/GoodReads/getBooksOnMembersShelf', function ($request, $respons
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = [];
-    $client = $this->httpClient;
+    $requestParams['query']['format'] = 'xml';
+    $stack = GuzzleHttp\HandlerStack::create();
+    $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
+        'consumer_key'    => $data['key'],
+        'consumer_secret' => $data['secret'],
+        'token'           => $data['token'],
+        'token_secret'    => $data['tokenSecret']
+    ]);
+    $stack->push($middleware);
+    $client = new GuzzleHttp\Client([
+        'handler' => $stack,
+        'auth' => 'oauth'
+    ]);
 
     try {
         $resp = $client->get($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
+
+        print_r($responseBody);
+        exit();
 
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';

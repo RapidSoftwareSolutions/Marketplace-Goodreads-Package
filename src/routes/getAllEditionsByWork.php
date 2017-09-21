@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/getAllEditionsByWork', function ($request, $response)
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','workId']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','workId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,7 +12,7 @@ $app->post('/api/GoodReads/getAllEditionsByWork', function ($request, $response)
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','workId'=>'work_id'];
+    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','workId'=>'work_id'];
     $optionalParams = [];
     $bodyParams = [
     ];
@@ -27,9 +27,18 @@ $app->post('/api/GoodReads/getAllEditionsByWork', function ($request, $response)
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = [];
-    $client = $this->httpClient;
-
+    $stack = GuzzleHttp\HandlerStack::create();
+    $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
+        'consumer_key'    => $data['key'],
+        'consumer_secret' => $data['secret'],
+        'token'           => $data['token'],
+        'token_secret'    => $data['tokenSecret']
+    ]);
+    $stack->push($middleware);
+    $client = new GuzzleHttp\Client([
+        'handler' => $stack,
+        'auth' => 'oauth'
+    ]);
     try {
         $resp = $client->get($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();

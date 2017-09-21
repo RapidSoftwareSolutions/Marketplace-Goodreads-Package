@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/updateUserStatus', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','bookId','percent']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','bookId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,8 +12,8 @@ $app->post('/api/GoodReads/updateUserStatus', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret'];
-    $optionalParams = ['bookId'=>'user_status[book_id]','bookPage'=>'user_status[page]','percent'=>'user_status[percent]','statusBody'=>'user_status[body]'];
+    $requiredParams = ['bookId'=>'user_status[book_id]','apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret'];
+    $optionalParams = ['bookPage'=>'user_status[page]','percent'=>'user_status[percent]','statusBody'=>'user_status[body]'];
     $bodyParams = [
        'query' => ['user_status[book_id]','user_status[page]','user_status[percent]','user_status[body]']
     ];

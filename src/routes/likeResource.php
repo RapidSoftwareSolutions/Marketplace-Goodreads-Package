@@ -12,8 +12,8 @@ $app->post('/api/GoodReads/likeResource', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','rating'=>'rating[rating]','resourceId'=>'rating[resource_id]','resourceType'=>'rating[resource_type]'];
-    $optionalParams = [];
+    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','resourceId'=>'rating[resource_id]','resourceType'=>'rating[resource_type]'];
+    $optionalParams = ['rating'=>'rating[rating]'];
     $bodyParams = [
        'query' => ['rating[resource_type]','rating[resource_id]','rating[rating]']
     ];

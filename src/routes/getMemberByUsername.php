@@ -12,10 +12,9 @@ $app->post('/api/GoodReads/getMemberByUsername', function ($request, $response) 
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','username'=>'username'];
+    $requiredParams = ['apiKey'=>'key','username'=>'username','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret'];
     $optionalParams = [];
-    $bodyParams = [
-    ];
+    $bodyParams = [];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
@@ -43,6 +42,7 @@ $app->post('/api/GoodReads/getMemberByUsername', function ($request, $response) 
     try {
         $resp = $client->get($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
+
 
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';
@@ -75,7 +75,8 @@ $app->post('/api/GoodReads/getMemberByUsername', function ($request, $response) 
         }
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-
+print_r($responseBody);
+exit();
         $result['contextWrites']['to']['status_msg'] = 'Wrong params.';
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {

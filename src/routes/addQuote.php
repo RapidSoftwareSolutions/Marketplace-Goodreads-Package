@@ -20,8 +20,12 @@ $app->post('/api/GoodReads/addQuote', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
-    $data['quote[tags]'] = \Models\Params::toString($data['quote[tags]'], ','); 
+
+    if(!empty($data['quote[tags]']))
+    {
+        $data['quote[tags]'] = \Models\Params::toString($data['quote[tags]'], ',');
+    }
+
 
 
     $query_str = "https://www.goodreads.com/quotes";
@@ -62,9 +66,8 @@ $app->post('/api/GoodReads/addQuote', function ($request, $response) {
 
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
             if(empty($result['contextWrites']['to'])) {
-                $result['callback'] = 'error';
-                $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-                $result['contextWrites']['to']['status_msg'] = "Wrong params.";
+
+                $result['contextWrites']['to']['status_msg'] = "Api return no results.";
             }
         } else {
             $result['callback'] = 'error';

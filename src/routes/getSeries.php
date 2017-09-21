@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/getSeries', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','seriesId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,8 +12,8 @@ $app->post('/api/GoodReads/getSeries', function ($request, $response) {
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key'];
-    $optionalParams = ['seriesId'=>'seriesId'];
+    $requiredParams = ['apiKey'=>'key','seriesId'=>'seriesId'];
+    $optionalParams = [];
     $bodyParams = [
        'query' => ['key']
     ];

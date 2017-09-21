@@ -28,7 +28,7 @@ $app->post('/api/GoodReads/getListOwnedBooksByUserId', function ($request, $resp
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = [];
+    $requestParams['query']['format'] = 'xml';
 
     $stack = GuzzleHttp\HandlerStack::create();
     $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
@@ -47,8 +47,13 @@ $app->post('/api/GoodReads/getListOwnedBooksByUserId', function ($request, $resp
         $resp = $client->get($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
 
-        print_r($responseBody);
-        exit();
+
+        libxml_use_internal_errors(true);
+        $xml =  simplexml_load_string($responseBody);
+        if($xml)
+        {
+            $responseBody = json_decode(json_encode((array) $xml), 1);
+        }
 
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';

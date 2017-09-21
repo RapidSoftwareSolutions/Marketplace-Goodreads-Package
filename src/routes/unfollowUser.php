@@ -45,6 +45,7 @@ $app->post('/api/GoodReads/unfollowUser', function ($request, $response) {
         $resp = $client->delete($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
 
+
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';
             libxml_use_internal_errors(true);
@@ -56,9 +57,8 @@ $app->post('/api/GoodReads/unfollowUser', function ($request, $response) {
 
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
             if(empty($result['contextWrites']['to'])) {
-                $result['callback'] = 'error';
-                $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-                $result['contextWrites']['to']['status_msg'] = "Wrong params.";
+
+                $result['contextWrites']['to']['status_msg'] = "Api return no params.";
             }
         } else {
             $result['callback'] = 'error';

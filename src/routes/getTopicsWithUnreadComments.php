@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/getTopicsWithUnreadComments', function ($request, $re
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','groupId']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','groupId']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,7 +12,7 @@ $app->post('/api/GoodReads/getTopicsWithUnreadComments', function ($request, $re
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','groupId'=>'group_id'];
+    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','groupId'=>'group_id'];
     $optionalParams = ['viewed'=>'viewed','page'=>'page','sort'=>'sort','order'=>'order'];
     $bodyParams = [
        'query' => ['key','page','sort','order','viewed']
@@ -38,7 +38,18 @@ $app->post('/api/GoodReads/getTopicsWithUnreadComments', function ($request, $re
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['query']['format'] = 'xml';
-    $client = $this->httpClient;
+    $stack = GuzzleHttp\HandlerStack::create();
+    $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
+        'consumer_key'    => $data['key'],
+        'consumer_secret' => $data['secret'],
+        'token'           => $data['token'],
+        'token_secret'    => $data['tokenSecret']
+    ]);
+    $stack->push($middleware);
+    $client = new GuzzleHttp\Client([
+        'handler' => $stack,
+        'auth' => 'oauth'
+    ]);
 
     try {
         $resp = $client->get($query_str, $requestParams);

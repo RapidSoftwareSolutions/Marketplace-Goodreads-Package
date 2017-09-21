@@ -27,7 +27,6 @@ $app->post('/api/GoodReads/deleteOwnedBook', function ($request, $response) {
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = [];
     $stack = GuzzleHttp\HandlerStack::create();
     $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
         'consumer_key'    => $data['key'],
@@ -45,6 +44,8 @@ $app->post('/api/GoodReads/deleteOwnedBook', function ($request, $response) {
         $resp = $client->post($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
 
+
+
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';
             libxml_use_internal_errors(true);
@@ -56,9 +57,7 @@ $app->post('/api/GoodReads/deleteOwnedBook', function ($request, $response) {
 
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
             if(empty($result['contextWrites']['to'])) {
-                $result['callback'] = 'error';
-                $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-                $result['contextWrites']['to']['status_msg'] = "Wrong params.";
+                $result['contextWrites']['to']['status_msg'] = "Api return no results.";
             }
         } else {
             $result['callback'] = 'error';
@@ -76,12 +75,9 @@ $app->post('/api/GoodReads/deleteOwnedBook', function ($request, $response) {
         }
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-        libxml_use_internal_errors(true);
-        $xml =  simplexml_load_string($responseBody);
-        if($xml)
-        {
-            $out = json_decode(json_encode((array) $xml), 1);
-        }
+
+        $out = \Models\normilizeJson::normalizeJsonErrorResponse($responseBody);
+
         $result['contextWrites']['to']['status_msg'] = $out;
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {

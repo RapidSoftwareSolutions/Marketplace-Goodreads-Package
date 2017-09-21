@@ -19,8 +19,9 @@ Read thousands of book reviews by your friends and other Goodreads members, keep
  |Select|String with predefined values|```sample```
  |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ``` 
  
+ 
 ## GoodReads.getRequestToken
-Get Request Token for getAccessCredentials.
+Get Request Token using OAuth.
 
 | Field    | Type       | Description
 |----------|------------|----------
@@ -38,7 +39,7 @@ Get Access Credentials (accessToken/accessTokenSecret), after getRequestToken us
 | oauthTokenSecret| String     | The oauthTokenSecret Token obtained from getAccessCredentials.
 
 ## GoodReads.getAuthorizedUser
-Get an response with the Goodreads user_id for the user who authorized access.
+Get an response with the Goodreads user_id for the user who authorized access using OAuth.
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -53,7 +54,7 @@ Get a response with a paginated list of an authors books.
 | Field     | Type       | Description
 |-----------|------------|----------
 | apiKey    | credentials| Api key from app console.
-| authorId  | String     | Goodreads Author id.
+| authorId  | Number     | Goodreads Author id.
 | pageNumber| Number     | page number,1-N (default 1)
 
 ## GoodReads.getAuthorInfo
@@ -62,7 +63,7 @@ Get a response with info about an author.
 | Field   | Type       | Description
 |---------|------------|----------
 | apiKey  | credentials| Api key from app console.
-| authorId| String     | Goodreads Author id.
+| authorId| Number     | Goodreads Author id.
 
 ## GoodReads.followAnAuthor
 Make the signed-in user follow an author.
@@ -73,7 +74,7 @@ Make the signed-in user follow an author.
 | apiSecret        | credentials| Api secret from app console.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
-| authorId         | String     | Goodreads Author id.
+| authorId         | Number     | Goodreads Author id.
 
 ## GoodReads.unfollowAnAuthor
 Unfollow an author.
@@ -84,10 +85,10 @@ Unfollow an author.
 | apiSecret        | credentials| Api secret from app console.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
-| authorId         | String     | Goodreads Author id.
+| followingId      | Number     | Goodreads following id.
 
 ## GoodReads.getAuthorFollowingInformation
-Get a response using describing the association between a user and an author.
+Get a response using OAuth describing the association between a user and an author.
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -95,7 +96,7 @@ Get a response using describing the association between a user and an author.
 | apiSecret        | credentials| Api secret from app console.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
-| authorId         | String     | Goodreads Author id.
+| followingId      | Number     | Goodreads Author id.
 
 ## GoodReads.getBookIdByISBNs
 Get Goodreads book IDs given one or more ISBNs. Response contains IDs without any markup.
@@ -111,7 +112,7 @@ Get Goodreads work IDs given one or more Goodreads book IDs. Response contains w
 | Field | Type       | Description
 |-------|------------|----------
 | apiKey| credentials| Api key from app console.
-| bookId| String     | Book IDs of books to look up.
+| bookId| Number     | Book IDs of books to look up.
 
 ## GoodReads.getReviewStatisticsByISBNs
 Get review statistics for books given a list of ISBNs.You can mix ISBN10s and ISBN13s, but you'll receive a 422 error if you don't specify any, and you'll receive a 404 if none are found.
@@ -127,7 +128,7 @@ Get a response that contains embed code for the iframe reviews widget. The revie
 | Field   | Type       | Description
 |---------|------------|----------
 | apiKey  | credentials| Api key from app console.
-| bookId  | String     | A Goodreads internal book_id.
+| bookId  | Number     | A Goodreads internal book_id.
 | textOnly| Select     | Only show reviews that have text (default false).
 | rating  | Number     | Show only reviews with a particular rating.
 
@@ -138,7 +139,7 @@ Get a response that contains embed code for the iframe reviews widget that shows
 |-------|------------|----------
 | apiKey| credentials| Api key from app console.
 | isbn  | String     | The ISBN of the book to lookup.
-| userId| String     | Single user id.
+| userId| Number     | Single user id.
 | rating| Number     | Show only reviews with a particular rating.
 
 ## GoodReads.getBookReviewsByTitle
@@ -175,7 +176,7 @@ Creates a new comment. You'll need to register your app (required).
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
 | type             | Select     | The title of the book to lookup.
 | resourceId       | Number     | Id of resource given as type param.
-| page             | String     | 1-N (optional, default 1).
+| page             | Number     | 1-N (default 1).
 
 ## GoodReads.getEventsInYourArea
 Shows events nearby the authenticating user or you can get a list of events near a location by passing lat/lng coordinates.
@@ -189,7 +190,7 @@ Shows events nearby the authenticating user or you can get a list of events near
 | ZIPcode    | String     | ZIP code.
 
 ## GoodReads.followUser
-Start following a user. You'll need to register your app (required).
+Start following a user using OAuth. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -200,7 +201,7 @@ Start following a user. You'll need to register your app (required).
 | userId           | Number     | Goodreads user id of the user you want to stop following.
 
 ## GoodReads.unfollowUser
-Stop following a user. You'll need to register your app (required).
+Stop following a user using OAuth. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -211,7 +212,7 @@ Stop following a user. You'll need to register your app (required).
 | userId           | Number     | Goodreads user id of the user you want to stop following.
 
 ## GoodReads.confirmFriendRequest
-Confirm a friend request for the current user. You'll need to register your app (required).
+Confirm a friend request for the current user using OAuth. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -222,7 +223,7 @@ Confirm a friend request for the current user. You'll need to register your app 
 | friendRequestId  | Number     | friend request id.
 
 ## GoodReads.declineFriendRequest
-Decline a friend request for the current user. You'll need to register your app (required).
+Decline a friend request for the current user using OAuth. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -233,7 +234,7 @@ Decline a friend request for the current user. You'll need to register your app 
 | friendRequestId  | Number     | friend request id.
 
 ## GoodReads.getFriendRequests
-Returns a XML with the current user's friend requests. You'll need to register your app (required).
+Returns a XML with the current user's friend requests 'using OAuth. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -241,10 +242,10 @@ Returns a XML with the current user's friend requests. You'll need to register y
 | apiSecret        | credentials| Api secret from app console.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
-| page             | Number     | Page: 1-N page of results to show (optional, default 1).
+| page             | Number     | Page: 1-N page of results to show (default 1).
 
 ## GoodReads.addFriend
-Sends a friend request to a user. You'll need to register your app (required).
+Sends a friend request to a user using OAuth. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -255,7 +256,7 @@ Sends a friend request to a user. You'll need to register your app (required).
 | friendId         | Number     | Goodreads user id for friend.
 
 ## GoodReads.joinGroup
-Let the current user join a given group. You'll need to register your app (required).
+Let the current user join a given group using OAuth. You'll need to register your app (required).
 
 | Field            | Type       | Description
 |------------------|------------|----------
@@ -292,7 +293,7 @@ Search group titles and descriptions for the given string.
 |------------|------------|----------
 | apiKey     | credentials| Api key from app console.
 | page       | Number     | Which page of results to show (default 1).
-| searchQuery| Number     | Which page of results to show (default 1).
+| searchQuery| String     | Which page of results to show (default 1).
 
 ## GoodReads.getGroup
 Get info about a group by id.
@@ -400,8 +401,8 @@ If you don't specify an author_id, it will try to look one up based on the autho
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
 | authorName       | String     | Name of the quote author.
-| authorId         | String     | Id of the author.
-| bookId           | String     | Id of the book from which the quote was taken.
+| authorId         | Number     | Id of the author.
+| bookId           | Number     | Id of the book from which the quote was taken.
 | quoteBody        | String     | The quote.
 | quotaTags        | List       | List of quota tags.
 | isbn             | String     | ISBN of the book from which the quote was taken. This will not override the book_id if it was provide.
@@ -460,9 +461,9 @@ Add book reviews for members. You'll need to register your app (required).
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
 | bookId           | Number     | Goodreads book_id.
 | textReview       | String     | Text of the review.
-| reviewRating     | Number     | Rating (0-5) (optional, default is 0 (No rating))
+| reviewRating     | Number     | Rating (0-5) ( default is 0 (No rating))
 | reviewDate       | DatePicker | Date (YYYY-MM-DD format, e.g. 2008-02-01)
-| shelf            | String     | read|currently-reading|to-read|<USER SHELF NAME> (optional, must exist)
+| shelf            | String     | read|currently-reading|to-read|<USER SHELF NAME> ( must exist)
 
 ## GoodReads.updateReview
 Edit a book review.
@@ -476,9 +477,9 @@ Edit a book review.
 | reviewId         | Number     | Goodreads review id.
 | bookId           | Number     | Goodreads book_id.
 | textReview       | String     | Text of the review.
-| reviewRating     | Number     | Rating (0-5) (optional, default is 0 (No rating))
+| reviewRating     | Number     | Rating (0-5) ( default is 0 (No rating))
 | reviewDate       | DatePicker | Date (YYYY-MM-DD format, e.g. 2008-02-01)
-| shelf            | String     | read|currently-reading|to-read|<USER SHELF NAME> (optional, must exist)
+| shelf            | String     | read|currently-reading|to-read|<USER SHELF NAME> ( must exist)
 | finished         | Select     | True to mark finished reading.
 
 ## GoodReads.deleteReview
@@ -495,33 +496,42 @@ Deletes a book review.
 ## GoodReads.getBooksOnMembersShelf
 Get the books on a members shelf. Customize the feed with the below variables. Viewing members with profiles who have set them as visible to members only or just their friends.
 
-| Field      | Type       | Description
-|------------|------------|----------
-| apiKey     | credentials| Api key from app console.
-| variable   | String     | Customize the feed with the below variables.
-| userId     | Number     | Goodreads id of the user.
-| shelf      | Number     |  read, currently-reading, to-read, etc.
-| sort       | Select     | Sort type.
-| searchQuery| String     | Query text to match against member's books.
-| order      | Select     | Field to sort topics by.
-| page       | Number     | Which page of results to show (default 1).
-| perPage    | Number     | Count of item in page.
+| Field            | Type       | Description
+|------------------|------------|----------
+| apiKey           | credentials| Api key from app console.
+| apiSecret        | credentials| Api secret from app console.
+| accessToken      | String     | The Access Token obtained from getAccessCredentials.
+| accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
+| variable         | String     | Customize the feed with the below variables.
+| userId           | Number     | Goodreads id of the user.
+| shelf            | Number     |  read, currently-reading, to-read, etc.
+| sort             | Select     | Sort type.
+| searchQuery      | String     | Query text to match against member's books.
+| order            | Select     | Field to sort topics by.
+| page             | Number     | Which page of results to show (default 1).
+| perPage          | Number     | Count of item in page.
 
 ## GoodReads.getAllRecentReviews
 Get a response with the most recently added reviews from all members.
 
-| Field | Type       | Description
-|-------|------------|----------
-| apiKey| credentials| Api key from app console.
+| Field            | Type       | Description
+|------------------|------------|----------
+| apiKey           | credentials| Api key from app console.
+| apiSecret        | credentials| Api secret from app console.
+| accessToken      | String     | The Access Token obtained from getAccessCredentials.
+| accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
 
 ## GoodReads.getReview
 Get a response that contains the review and rating.
 
-| Field   | Type       | Description
-|---------|------------|----------
-| apiKey  | credentials| Api key from app console.
-| reviewId| Number     | Id of the review.
-| page    | Number     | Which page of results to show (default 1).
+| Field            | Type       | Description
+|------------------|------------|----------
+| apiKey           | credentials| Api key from app console.
+| apiSecret        | credentials| Api secret from app console.
+| accessToken      | String     | The Access Token obtained from getAccessCredentials.
+| accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
+| reviewId         | Number     | Id of the review.
+| page             | Number     | Which page of results to show (default 1).
 
 ## GoodReads.getUserReviewForBook
 Get a response that contains the review and rating for the specified book and user.
@@ -587,7 +597,7 @@ Add a book to a shelf.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
 | bookId           | Number     | Id of the book to add to the shelf.
-| shelfName        | Number     | Name of the shelf.
+| shelfName        | String     | Name of the shelf.
 
 ## GoodReads.removeBookFromShelf
 Remove a book from a shelf.
@@ -599,6 +609,7 @@ Remove a book from a shelf.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
 | bookId           | Number     | Id of the book to add to the shelf.
+| shelfName        | String     | Name of the shelf.
 
 ## GoodReads.addBooksToMultipleShelves
 Add a list of books to many current user's shelves.
@@ -610,7 +621,7 @@ Add a list of books to many current user's shelves.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
 | booksIds         | List       | Ids of the books to add to the shelf.
-| shelvesIds       | List       | Ids of the shelfs.
+| shelvesNames     | List       | Names of the shelfs.
 
 ## GoodReads.getUserShelves
 Lists shelves for a user.
@@ -640,7 +651,7 @@ Create a new topic.
 | digest           | Select     | Indicates whether the user would like to receive an email when someone replies to the topic (user will get one email only). To enable, set to 'on'; otherwise, default is not to add to update feed.
 
 ## GoodReads.getListTopicsByGroupFolder
-Returns a list of topics in a group's folder specified either by folder id or by group id. 
+Returns a list of topics in a group's folder specified either by group id.
 
 | Field   | Type       | Description
 |---------|------------|----------
@@ -662,14 +673,17 @@ Version of topic/show.
 ## GoodReads.getTopicsWithUnreadComments
 Get a list of topics from a specified group that have comments added since the last time the user viewed the topic.
 
-| Field  | Type       | Description
-|--------|------------|----------
-| apiKey | credentials| Api key from app console.
-| groupId| Number     | Id of the group.
-| viewed | Select     | Indicates whether to show topics user has viewed before or not. Default is to include all topics; set this param to 'true' or '1' to restrict to only topics the user has already viewed.
-| page   | Number     | Which page of results to show (default 1).
-| sort   | Select     | Field to sort topics by.
-| order  | Select     | Field to sort topics by.
+| Field            | Type       | Description
+|------------------|------------|----------
+| apiKey           | credentials| Api key from app console.
+| apiSecret        | credentials| Api secret from app console.
+| accessToken      | String     | The Access Token obtained from getAccessCredentials.
+| accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
+| groupId          | Number     | Id of the group.
+| viewed           | Select     | Indicates whether to show topics user has viewed before or not. Default is to include all topics; set this param to 'true' or '1' to restrict to only topics the user has already viewed.
+| page             | Number     | Which page of results to show (default 1).
+| sort             | Select     | Field to sort topics by.
+| order            | Select     | Field to sort topics by.
 
 ## GoodReads.getFriendUpdates
 Get your friend updates (the same data you see on your homepage).
@@ -693,7 +707,7 @@ Add book shelves for members.
 | apiSecret        | credentials| Api secret from app console.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
-| shelfName        | Select     | Name of the new shelf.
+| shelfName        | String     | Name of the new shelf.
 | exclusiveFlag    | Select     | Default false.
 | sortableFlag     | Select     | Default false.
 | featured         | Select     | Default false.
@@ -708,7 +722,7 @@ Add book shelves for members.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
 | shelfName        | Select     | Name of the new shelf.
-| shelfId          | String     | Id of the shelf.
+| shelfId          | Number     | Id of the shelf.
 | exclusiveFlag    | Select     | Default false.
 | sortableFlag     | Select     | Default false.
 | featured         | Select     | Default false.
@@ -716,18 +730,13 @@ Add book shelves for members.
 ## GoodReads.getMember
 Get a response with the public information about the given Goodreads user.
 
-| Field   | Type       | Description
-|---------|------------|----------
-| apiKey  | credentials| Api key from app console.
-| memberId| Number     | Goodreads user id.
-
-## GoodReads.getMemberByUsername
-Get a response with the public information about the given Goodreads user.
-
-| Field   | Type       | Description
-|---------|------------|----------
-| apiKey  | credentials| Api key from app console.
-| username| Number     | Goodreads member username.
+| Field            | Type       | Description
+|------------------|------------|----------
+| apiKey           | credentials| Api key from app console.
+| apiSecret        | credentials| Api secret from app console.
+| accessToken      | String     | The Access Token obtained from getAccessCredentials.
+| accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
+| memberId         | Number     | Goodreads user id.
 
 ## GoodReads.compareBooksWithMember
 Get a response with stats comparing your books to another member's.
@@ -738,25 +747,31 @@ Get a response with stats comparing your books to another member's.
 | apiSecret        | credentials| Api secret from app console.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
-| userId           | String     | Id of the user.
+| userId           | Number     | Id of the user.
 
 ## GoodReads.getUsersFollowers
 Get a response with the given user's followers.
 
-| Field | Type       | Description
-|-------|------------|----------
-| apiKey| credentials| Api key from app console.
-| page  | Number     | Which page of results to show (default 1).
-| userId| Number     | id of the user.
+| Field            | Type       | Description
+|------------------|------------|----------
+| apiKey           | credentials| Api key from app console.
+| apiSecret        | credentials| Api secret from app console.
+| accessToken      | String     | The Access Token obtained from getAccessCredentials.
+| accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
+| page             | Number     | Which page of results to show (default 1).
+| userId           | Number     | id of the user.
 
 ## GoodReads.getPeopleUserIsFollowing
 Get a response with people the given user is following.
 
-| Field | Type       | Description
-|-------|------------|----------
-| apiKey| credentials| Api key from app console.
-| page  | Number     | Which page of results to show (default 1).
-| userId| Number     | id of the user.
+| Field            | Type       | Description
+|------------------|------------|----------
+| apiKey           | credentials| Api key from app console.
+| apiSecret        | credentials| Api secret from app console.
+| accessToken      | String     | The Access Token obtained from getAccessCredentials.
+| accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
+| page             | Number     | Which page of results to show (default 1).
+| userId           | Number     | id of the user.
 
 ## GoodReads.getUserFriends
 Get an xml response with the given user's friends.
@@ -815,8 +830,11 @@ Get information about a user status update.
 ## GoodReads.getAllEditionsByWork
 List of all the available editions of a particular work. This API requires extra permission.
 
-| Field | Type       | Description
-|-------|------------|----------
-| apiKey| credentials| Api key from app console.
-| workId| Number     | Id of the work.
+| Field            | Type       | Description
+|------------------|------------|----------
+| apiKey           | credentials| Api key from app console.
+| apiSecret        | credentials| Api secret from app console.
+| accessToken      | String     | The Access Token obtained from getAccessCredentials.
+| accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
+| workId           | Number     | Id of the work.
 

@@ -22,7 +22,7 @@ $app->post('/api/GoodReads/compareBooksWithMember', function ($request, $respons
     
 
 
-    $query_str = "https://www.goodreads.com/user/compare/{$data['userId']}.xml";
+    $query_str = "https://www.goodreads.com/user/compare/{$data['id']}.xml";
 
     
 
@@ -41,6 +41,7 @@ $app->post('/api/GoodReads/compareBooksWithMember', function ($request, $respons
         'handler' => $stack,
         'auth' => 'oauth'
     ]);
+
 
 
     try {
@@ -79,12 +80,7 @@ $app->post('/api/GoodReads/compareBooksWithMember', function ($request, $respons
         }
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-        libxml_use_internal_errors(true);
-        $xml =  simplexml_load_string($responseBody);
-        if($xml)
-        {
-            $out = json_decode(json_encode((array) $xml), 1);
-        }
+        $out = \Models\normilizeJson::normalizeJsonErrorResponse($responseBody,true);
         $result['contextWrites']['to']['status_msg'] = $out;
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {

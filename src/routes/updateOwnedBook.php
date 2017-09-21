@@ -30,7 +30,7 @@ $app->post('/api/GoodReads/updateOwnedBook', function ($request, $response) {
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['query']['format'] = 'xml';
 
-    $requestParams['headers'] = [];
+
     $stack = GuzzleHttp\HandlerStack::create();
     $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
         'consumer_key'    => $data['key'],
@@ -44,9 +44,13 @@ $app->post('/api/GoodReads/updateOwnedBook', function ($request, $response) {
         'auth' => 'oauth'
     ]);
 
+
+
     try {
         $resp = $client->put($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
+
+
 
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';
