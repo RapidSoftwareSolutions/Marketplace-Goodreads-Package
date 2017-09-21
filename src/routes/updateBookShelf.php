@@ -57,9 +57,7 @@ $app->post('/api/GoodReads/updateBookShelf', function ($request, $response) {
 
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
             if(empty($result['contextWrites']['to'])) {
-                $result['callback'] = 'error';
-                $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-                $result['contextWrites']['to']['status_msg'] = "Wrong params.";
+                $result['contextWrites']['to']['status_msg'] = "Api return empty results.";
             }
         } else {
             $result['callback'] = 'error';
@@ -77,12 +75,7 @@ $app->post('/api/GoodReads/updateBookShelf', function ($request, $response) {
         }
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-        libxml_use_internal_errors(true);
-        $xml =  simplexml_load_string($responseBody);
-        if($xml)
-        {
-            $out = json_decode(json_encode((array) $xml), 1);
-        }
+        $out = \Models\normilizeJson::normalizeJsonErrorResponse($responseBody);
         $result['contextWrites']['to']['status_msg'] = $out;
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {

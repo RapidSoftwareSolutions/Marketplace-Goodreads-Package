@@ -22,7 +22,7 @@ $app->post('/api/GoodReads/getSeriesByWorkId', function ($request, $response) {
     
 
 
-    $query_str = "https://www.goodreads.com/series/work/{$data['']}?format=xml&key={$data['key']}";
+    $query_str = "https://www.goodreads.com/series/work/{$data['workId']}?format=xml&key={$data['key']}";
 
     
 

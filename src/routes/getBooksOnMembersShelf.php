@@ -54,7 +54,7 @@ $app->post('/api/GoodReads/getBooksOnMembersShelf', function ($request, $respons
     try {
         $resp = $client->get($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
-        
+
 
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';

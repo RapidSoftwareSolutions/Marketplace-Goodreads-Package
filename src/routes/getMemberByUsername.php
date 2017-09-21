@@ -75,8 +75,6 @@ $app->post('/api/GoodReads/getMemberByUsername', function ($request, $response) 
         }
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-print_r($responseBody);
-exit();
         $result['contextWrites']['to']['status_msg'] = 'Wrong params.';
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {

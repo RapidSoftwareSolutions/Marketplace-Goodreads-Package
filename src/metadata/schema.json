@@ -26,7 +26,7 @@
     ],
     "blocks": [{
         "name": "getRequestToken",
-        "description": "Get Request Token using OAuth.",
+        "description": "Get Request Token.",
         "args": [{
             "name": "apiKey",
             "type": "credentials",
@@ -118,7 +118,7 @@
         },
         {
             "name": "getAuthorizedUser",
-            "description": "Get an response with the Goodreads user_id for the user who authorized access using OAuth.",
+            "description": "Get an response with the Goodreads user_id for the user who authorized access.",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
@@ -210,7 +210,7 @@
                     "name": "pageNumber",
                     "type": "Number",
                     "info": "page number,1-N (default 1)",
-                    "required": true,
+                    "required": false,
                     "vendorSchema": {
                         "name": "page"
                     }
@@ -424,7 +424,7 @@
         },
         {
             "name": "getAuthorFollowingInformation",
-            "description": "Get a response using OAuth describing the association between a user and an author.",
+            "description": "Get a response describing the association between a user and an author.",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
@@ -1152,7 +1152,7 @@
         },
         {
             "name": "followUser",
-            "description": "Start following a user using OAuth. You'll need to register your app (required).",
+            "description": "Start following a user. You'll need to register your app (required).",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
@@ -1219,7 +1219,7 @@
         },
         {
             "name": "unfollowUser",
-            "description": "Stop following a user using OAuth. You'll need to register your app (required).",
+            "description": "Stop following a user. You'll need to register your app (required).",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
@@ -1286,7 +1286,7 @@
         },
         {
             "name": "confirmFriendRequest",
-            "description": "Confirm a friend request for the current user using OAuth. You'll need to register your app (required).",
+            "description": "Confirm a friend request for the current user. You'll need to register your app (required).",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
@@ -1361,7 +1361,7 @@
         },
         {
             "name": "declineFriendRequest",
-            "description": "Decline a friend request for the current user using OAuth. You'll need to register your app (required).",
+            "description": "Decline a friend request for the current user. You'll need to register your app (required).",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
@@ -1436,7 +1436,7 @@
         },
         {
             "name": "getFriendRequests",
-            "description": "Returns a XML with the current user's friend requests 'using OAuth. You'll need to register your app (required).",
+            "description": "Returns a response with the current user's friend requests. You'll need to register your app (required).",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
@@ -1508,7 +1508,7 @@
         },
         {
             "name": "addFriend",
-            "description": "Sends a friend request to a user using OAuth. You'll need to register your app (required).",
+            "description": "Sends a friend request to a user. You'll need to register your app (required).",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
@@ -1583,7 +1583,7 @@
         },
         {
             "name": "joinGroup",
-            "description": "Let the current user join a given group using OAuth. You'll need to register your app (required).",
+            "description": "Let the current user join a given group . You'll need to register your app (required).",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
@@ -5156,7 +5156,7 @@
         },
         {
             "name": "getUserFriends",
-            "description": "Get an xml response with the given user's friends.",
+            "description": "Get an response with the given user's friends.",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
