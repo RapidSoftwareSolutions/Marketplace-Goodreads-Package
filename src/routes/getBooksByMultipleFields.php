@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/getBooksByMultipleFields', function ($request, $respo
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','title','authorName','isbn','serachField']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','title','authorName','isbn']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,15 +12,14 @@ $app->post('/api/GoodReads/getBooksByMultipleFields', function ($request, $respo
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','title'=>'title','authorName'=>'author','isbn'=>'isbn','serachField'=>'search[field]'];
-    $optionalParams = ['page'=>'page'];
+    $requiredParams = ['apiKey'=>'key','title'=>'title','authorName'=>'author','isbn'=>'isbn'];
+    $optionalParams = ['page'=>'page','searchField'=>'search[field]'];
     $bodyParams = [
        'query' => ['key','search[field]','page']
     ];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    $data['q'] = implode('/',array($data['title'],$data['author'],$data['isbn']));
 
 
     $query_str = "https://www.goodreads.com/search/index.xml";
@@ -30,6 +29,9 @@ $app->post('/api/GoodReads/getBooksByMultipleFields', function ($request, $respo
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
     $client = $this->httpClient;
+    $requestParams['query']['q'] = implode('/',array($data['title'],$data['author'],$data['isbn']));
+
+
 
     try {
         $resp = $client->get($query_str, $requestParams);

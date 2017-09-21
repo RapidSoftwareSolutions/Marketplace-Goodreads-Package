@@ -99,8 +99,6 @@ $app->post('/api/GoodReads/unlikeResource', function ($request, $response) {
     }
 
 
-    exit();
-
     return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
 
 });

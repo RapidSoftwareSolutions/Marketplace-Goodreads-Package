@@ -23,7 +23,7 @@ $app->post('/api/GoodReads/updateReview', function ($request, $response) {
     
 
 
-    $query_str = "https://www.goodreads.com/{$data['review_id']}.xml";
+    $query_str = "https://www.goodreads.com/review/{$data['review_id']}.xml";
 
     
 

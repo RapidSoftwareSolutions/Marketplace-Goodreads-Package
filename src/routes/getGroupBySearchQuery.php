@@ -95,6 +95,7 @@ $app->post('/api/GoodReads/getGroupBySearchQuery', function ($request, $response
 
     }
 
+
     return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($result);
 
 });

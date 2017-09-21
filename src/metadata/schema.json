@@ -3671,7 +3671,7 @@
                     }
                 },
                 {
-                    "name": "serachField",
+                    "name": "searchField",
                     "type": "Select",
                     "options": [
                         "title",
@@ -3679,7 +3679,7 @@
                         "author"
                     ],
                     "info": "Field to search,(default is 'all').",
-                    "required": true,
+                    "required": false,
                     "vendorSchema": {
                         "name": "search[field]"
                     }

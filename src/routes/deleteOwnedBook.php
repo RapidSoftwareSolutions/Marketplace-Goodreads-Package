@@ -75,9 +75,7 @@ $app->post('/api/GoodReads/deleteOwnedBook', function ($request, $response) {
         }
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-
         $out = \Models\normilizeJson::normalizeJsonErrorResponse($responseBody);
-
         $result['contextWrites']['to']['status_msg'] = $out;
 
     } catch (GuzzleHttp\Exception\ServerException $exception) {

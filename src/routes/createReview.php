@@ -44,9 +44,11 @@ $app->post('/api/GoodReads/createReview', function ($request, $response) {
     ]);
 
 
+
     try {
         $resp = $client->post($query_str, $requestParams);
         $responseBody = $resp->getBody()->getContents();
+
 
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';
@@ -73,6 +75,7 @@ $app->post('/api/GoodReads/createReview', function ($request, $response) {
     } catch (\GuzzleHttp\Exception\ClientException $exception) {
 
         $responseBody = $exception->getResponse()->getBody()->getContents();
+
 
         if(empty(json_decode($responseBody))) {
             $out = $responseBody;
