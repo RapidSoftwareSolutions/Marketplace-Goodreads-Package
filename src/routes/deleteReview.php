@@ -14,8 +14,7 @@ $app->post('/api/GoodReads/deleteReview', function ($request, $response) {
 
     $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','reviewId'=>'review_id'];
     $optionalParams = [];
-    $bodyParams = [
-    ];
+    $bodyParams = [];
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
@@ -24,10 +23,11 @@ $app->post('/api/GoodReads/deleteReview', function ($request, $response) {
 
     $query_str = "https://www.goodreads.com/review/destroy/{$data['review_id']}?format=xml";
 
-    
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-    $requestParams['headers'] = [];
+
+   // $requestParams['query']['book_id'] = 5202;
+
     $stack = GuzzleHttp\HandlerStack::create();
     $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
         'consumer_key'    => $data['key'],

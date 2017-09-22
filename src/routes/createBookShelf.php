@@ -20,8 +20,8 @@ $app->post('/api/GoodReads/createBookShelf', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
 
+    $data['featured'] = true;
 
     $query_str = "https://www.goodreads.com/user_shelves.xml";
 

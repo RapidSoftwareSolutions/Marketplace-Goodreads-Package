@@ -1,5 +1,35 @@
 <?php
 
+//
+//
+//
+//
+//
+//$str = 'archival entertainment news publicity royalty sport';
+//
+//$part = explode(' ',$str);
+//foreach($part as $key => $value)
+//{
+//   $value = trim($value);
+//   $part[$key] = '"'.$value.'"';
+//}
+//echo implode(',',$part);
+//exit();
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 if (PHP_SAPI == 'cli-server') {
     // To help the built-in PHP dev server, check if the request was actually for
     // something which should probably be served as a static file

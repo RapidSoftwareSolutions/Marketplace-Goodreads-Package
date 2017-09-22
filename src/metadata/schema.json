@@ -773,8 +773,8 @@
                 {
                     "name": "authorName",
                     "type": "String",
-                    "info": "The author name of the book to lookup. This is optional, but is recommended for accuracy.",
-                    "required": false,
+                    "info": "The author name of the book to lookup.",
+                    "required": true,
                     "vendorSchema": {
                         "name": "author"
                     }
@@ -1551,7 +1551,7 @@
                     "name": "friendId",
                     "type": "Number",
                     "info": "Goodreads user id for friend.",
-                    "required": false,
+                    "required": true,
                     "vendorSchema": {
                         "name": "id"
                     }
@@ -1626,7 +1626,7 @@
                     "name": "groupId",
                     "type": "Number",
                     "info": "id of the group.",
-                    "required": false,
+                    "required": true,
                     "vendorSchema": {
                         "name": "id"
                     }
@@ -1707,7 +1707,7 @@
         },
         {
             "name": "getGroupMembers",
-            "description": "Returns list of groups the user specified by id belongs to.",
+            "description": "Returns a response list of members of the group.",
             "args": [{
                 "name": "apiKey",
                 "type": "credentials",
@@ -3142,76 +3142,6 @@
                         "shelf"
                     ]
                 }],
-                "oauth1": {
-                    "ck": "{$data['key']}",
-                    "cs": "{$data['secret']}",
-                    "token": "{$data['token']}",
-                    "tokenSecret": "{$data['tokenSecret']}"
-                }
-            },
-            "callbacks": [{
-                "name": "error",
-                "info": "Error"
-            },
-                {
-                    "name": "success",
-                    "info": "Success"
-                }
-            ]
-        },
-        {
-            "name": "deleteReview",
-            "description": "Deletes a book review.",
-            "args": [{
-                "name": "apiKey",
-                "type": "credentials",
-                "info": "Api key from app console.",
-                "required": true,
-                "vendorSchema": {
-                    "name": "key"
-                }
-            },
-                {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "Api secret from app console.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "secret"
-                    }
-                },
-                {
-                    "name": "accessToken",
-                    "type": "String",
-                    "info": "The Access Token obtained from getAccessCredentials.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "token"
-                    }
-                },
-                {
-                    "name": "accessTokenSecret",
-                    "type": "String",
-                    "info": "The Access Secret Token obtained from getAccessCredentials.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "tokenSecret"
-                    }
-                },
-                {
-                    "name": "reviewId",
-                    "type": "Number",
-                    "info": "Goodreads review id.",
-                    "required": true,
-                    "vendorSchema": {
-                        "name": "review_id"
-                    }
-                }
-            ],
-            "vendorRequest": {
-                "url": "https:\/\/www.goodreads.com\/review\/destroy\/{$data['review_id']}?format=xml",
-                "method": "delete",
-                "requestParameters": [],
                 "oauth1": {
                     "ck": "{$data['key']}",
                     "cs": "{$data['secret']}",
@@ -4696,32 +4626,6 @@
                     "vendorSchema": {
                         "name": "user_shelf[exclusive_flag]"
                     }
-                },
-                {
-                    "name": "sortableFlag",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Default false.",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "user_shelf[sortable_flag]"
-                    }
-                },
-                {
-                    "name": "featured",
-                    "type": "Select",
-                    "options": [
-                        "true",
-                        "false"
-                    ],
-                    "info": "Default false.",
-                    "required": false,
-                    "vendorSchema": {
-                        "name": "user_shelf[featured]"
-                    }
                 }
             ],
             "vendorRequest": {
@@ -4730,8 +4634,6 @@
                 "requestParameters": [{
                     "type": "query",
                     "parameters": [
-                        "user_shelf[featured]",
-                        "user_shelf[sortable_flag]",
                         "user_shelf[exclusive_flag]",
                         "user_shelf[name]"
                     ]
@@ -4794,7 +4696,7 @@
                 },
                 {
                     "name": "shelfName",
-                    "type": "Select",
+                    "type": "String",
                     "info": "Name of the new shelf.",
                     "required": false,
                     "vendorSchema": {
@@ -5313,7 +5215,7 @@
                 },
                 {
                     "name": "statusBody",
-                    "type": "Number",
+                    "type": "String",
                     "required": false,
                     "info": "status update (required, unless page or percent is present, then it is optional).",
                     "vendorSchema": {

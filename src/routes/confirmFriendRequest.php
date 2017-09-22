@@ -59,9 +59,7 @@ $app->post('/api/GoodReads/confirmFriendRequest', function ($request, $response)
 
             $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
             if(empty($result['contextWrites']['to'])) {
-                $result['callback'] = 'error';
-                $result['contextWrites']['to']['status_code'] = 'API_ERROR';
-                $result['contextWrites']['to']['status_msg'] = "Wrong params.";
+                $result['contextWrites']['to']['status_msg'] = "Api return empty result.";
             }
         } else {
             $result['callback'] = 'error';

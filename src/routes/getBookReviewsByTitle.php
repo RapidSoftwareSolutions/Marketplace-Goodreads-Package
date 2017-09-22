@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/getBookReviewsByTitle', function ($request, $response
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','authorName']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','title']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,8 +12,8 @@ $app->post('/api/GoodReads/getBookReviewsByTitle', function ($request, $response
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','authorName'=>'author'];
-    $optionalParams = ['title'=>'title','rating'=>'rating'];
+    $requiredParams = ['apiKey'=>'key','title'=>'title'];
+    $optionalParams = ['authorName'=>'author','rating'=>'rating'];
     $bodyParams = [
        'query' => ['key','id','rating','title','author']
     ];

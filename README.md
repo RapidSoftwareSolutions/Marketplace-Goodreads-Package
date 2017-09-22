@@ -149,7 +149,7 @@ Get a response that contains embed code for the iframe reviews widget, which sho
 |-----------|------------|----------
 | apiKey    | credentials| Api key from app console.
 | authorName| String     | The title of the book to lookup.
-| title     | String     | The author name of the book to lookup. This is optional, but is recommended for accuracy.
+| title     | String     | The author name of the book to lookup.
 | rating    | Number     | Show only reviews with a particular rating.
 
 ## GoodReads.createComment
@@ -482,17 +482,6 @@ Edit a book review.
 | shelf            | String     | read|currently-reading|to-read|<USER SHELF NAME> ( must exist)
 | finished         | Select     | True to mark finished reading.
 
-## GoodReads.deleteReview
-Deletes a book review.
-
-| Field            | Type       | Description
-|------------------|------------|----------
-| apiKey           | credentials| Api key from app console.
-| apiSecret        | credentials| Api secret from app console.
-| accessToken      | String     | The Access Token obtained from getAccessCredentials.
-| accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
-| reviewId         | Number     | Goodreads review id.
-
 ## GoodReads.getBooksOnMembersShelf
 Get the books on a members shelf. Customize the feed with the below variables. Viewing members with profiles who have set them as visible to members only or just their friends.
 
@@ -709,8 +698,6 @@ Add book shelves for members.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
 | shelfName        | String     | Name of the new shelf.
 | exclusiveFlag    | Select     | Default false.
-| sortableFlag     | Select     | Default false.
-| featured         | Select     | Default false.
 
 ## GoodReads.updateBookShelf
 Add book shelves for members.
@@ -721,7 +708,7 @@ Add book shelves for members.
 | apiSecret        | credentials| Api secret from app console.
 | accessToken      | String     | The Access Token obtained from getAccessCredentials.
 | accessTokenSecret| String     | The Access Secret Token obtained from getAccessCredentials.
-| shelfName        | Select     | Name of the new shelf.
+| shelfName        | String    | Name of the new shelf.
 | shelfId          | Number     | Id of the shelf.
 | exclusiveFlag    | Select     | Default false.
 | sortableFlag     | Select     | Default false.
@@ -798,7 +785,7 @@ Add status updates for members.
 | bookId           | Number     | Id of the book being reviewed.
 | bookPage         | Number     | Page of the book.
 | percent          | Number     | Percent complete (use instead of page if appropriate).
-| statusBody       | Number     | status update (required, unless page or percent is present, then it is optional).
+| statusBody       | String     | status update (required, unless page or percent is present, then it is optional).
 
 ## GoodReads.deleteUserStatus
 Delete status updates for members.

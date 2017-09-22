@@ -46,7 +46,7 @@ $app->post('/api/GoodReads/getBookReviewsByISBN', function ($request, $response)
                 $responseBody = json_decode(json_encode((array) $responseBody), 1);
             }
 
-            $result['contextWrites']['to'] = is_array($responseBody) ? $responseBody : json_decode($responseBody);
+            $result['contextWrites']['to']['results'] = $responseBody;
             if(empty($result['contextWrites']['to'])) {
                 $result['callback'] = 'error';
                 $result['contextWrites']['to']['status_code'] = 'API_ERROR';

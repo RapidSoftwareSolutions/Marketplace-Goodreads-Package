@@ -4,7 +4,7 @@ $app->post('/api/GoodReads/addBooksToMultipleShelves', function ($request, $resp
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','booksIds','shelvesIds']);
+    $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret','booksIds','shelvesNames']);
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -12,7 +12,7 @@ $app->post('/api/GoodReads/addBooksToMultipleShelves', function ($request, $resp
         $post_data = $validateRes;
     }
 
-    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','booksIds'=>'bookids','shelvesIds'=>'shelves'];
+    $requiredParams = ['apiKey'=>'key','apiSecret'=>'secret','accessToken'=>'token','accessTokenSecret'=>'tokenSecret','booksIds'=>'bookids','shelvesNames'=>'shelves'];
     $optionalParams = [];
     $bodyParams = [
        'query' => ['bookids','shelves']
