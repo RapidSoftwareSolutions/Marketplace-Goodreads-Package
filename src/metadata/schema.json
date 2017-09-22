@@ -23,7 +23,10 @@
         "Register on the www.goodreads.com",
         "Create Goodreads application in console",
         "After creation app, you will receive apiKey and apiSecret",
-        "For getting accessToken and accessTokenSecret use `oauth/authorize` url and getAccessCredentials endpoint"
+        "For getting oauthToken and oauthTokenSecret use getRequestToken endpoint",
+        "After that,you need to get permission to use your application",
+        "Use authorize url (https://www.goodreads.com/oauth/authorize?oauth_token=xxx&oauth_token_secret=xxx&callback_uri=http://example.com)",
+        "After authorization ,use getAccessCredentials for getting accessToken and accessTokenSecret"
     ],
     "blocks": [{
         "name": "getRequestToken",
