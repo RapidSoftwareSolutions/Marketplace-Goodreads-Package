@@ -42,7 +42,7 @@ $app->post('/api/GoodReads/getBookIdByISBNs', function ($request, $response) {
             $result['callback'] = 'success';
 
             $result['contextWrites']['to']['results'] = $responseBody;
-            if(empty($result['contextWrites']['to']['result'])) {
+            if(empty($result['contextWrites']['to']['results'])) {
                 $result['callback'] = 'error';
                 $result['contextWrites']['to']['status_code'] = 'API_ERROR';
                 $result['contextWrites']['to']['status_msg'] = "Wrong params.";

@@ -1,33 +1,33 @@
 <?php
 
-//
-//
-//
-//
-//
-//$str = 'archival entertainment news publicity royalty sport';
-//
-//$part = explode(' ',$str);
-//foreach($part as $key => $value)
-//{
-//   $value = trim($value);
-//   $part[$key] = '"'.$value.'"';
-//}
-//echo implode(',',$part);
-//exit();
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+
+
+
+$str = 'newborn baby child teenager young_adult adult adults_only mature_adult senior_adult 0-1_months 2-5_months 6-11_months 12-17_months 18-23_months 2-3_years 4-5_years 6-7_years 8-9_years 10-11_years 12-13_years 14-15_years 16-17_years 18-19_years 20-24_years 20-29_years 25-29_years 30-34_years 30-39_years 35-39_years 40-44_years 40-49_years 45-49_years 50-54_years 50-59_years 55-59_years 60-64_years 60-69_years 65-69_years 70-79_years 80-89_years 90_plus_years 100_over';
+
+$part = explode(' ',$str);
+foreach($part as $key => $value)
+{
+   $value = trim($value);
+   $part[$key] = '"'.$value.'"';
+}
+echo implode(',',$part);
+exit();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if (PHP_SAPI == 'cli-server') {
