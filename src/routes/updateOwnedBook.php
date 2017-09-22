@@ -23,9 +23,9 @@ $app->post('/api/GoodReads/updateOwnedBook', function ($request, $response) {
     
 
 
-    $query_str = "https://www.goodreads.com/owned_books/update/{$data['id']}";
+    $query_str = "https://www.goodreads.com/owned_books/{$data['id']}";
 
-    
+
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['query']['format'] = 'xml';

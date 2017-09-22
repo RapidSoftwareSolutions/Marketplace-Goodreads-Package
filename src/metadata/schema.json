@@ -22,7 +22,8 @@
     "steps": [
         "Register on the www.goodreads.com",
         "Create Goodreads application in console",
-        "After creation app, you will receive apiKey and apiSecret"
+        "After creation app, you will receive apiKey and apiSecret",
+        "For getting accessToken and accessTokenSecret use `oauth/authorize` url and getAccessCredentials endpoint"
     ],
     "blocks": [{
         "name": "getRequestToken",
@@ -764,19 +765,20 @@
                 }
             },
                 {
-                    "name": "authorName",
+                    "name": "title",
                     "type": "String",
                     "info": "The title of the book to lookup.",
-                    "required": true,
+                    "required": true
+                },
+                {
+                    "name": "authorName",
+                    "type": "String",
+                    "info": "The author name of the book to lookup. This is optional, but is recommended for accuracy.",
+                    "required": false,
                     "vendorSchema": {
                         "name": "author"
                     }
-                },
-                {
-                    "name": "title",
-                    "type": "String",
-                    "info": "The author name of the book to lookup. This is optional, but is recommended for accuracy.",
-                    "required": false
+
                 },
                 {
                     "name": "rating",

@@ -41,7 +41,7 @@ $app->post('/api/GoodReads/getBookIdByISBNs', function ($request, $response) {
         if(in_array($resp->getStatusCode(), ['200', '201', '202', '203', '204'])) {
             $result['callback'] = 'success';
 
-            $result['contextWrites']['to'] = array('result' => $responseBody);
+            $result['contextWrites']['to']['results'] = $responseBody;
             if(empty($result['contextWrites']['to']['result'])) {
                 $result['callback'] = 'error';
                 $result['contextWrites']['to']['status_code'] = 'API_ERROR';
