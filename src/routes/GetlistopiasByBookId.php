@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/GetlistopiasByBookId', function ($request, $response) {
+$app->post('/api/Goodreads/GetlistopiasByBookId', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

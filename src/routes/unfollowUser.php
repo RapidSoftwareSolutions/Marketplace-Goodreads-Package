@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/unfollowUser', function ($request, $response) {
+$app->post('/api/Goodreads/unfollowUser', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

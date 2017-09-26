@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/removeBookFromShelf', function ($request, $response) {
+$app->post('/api/Goodreads/removeBookFromShelf', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

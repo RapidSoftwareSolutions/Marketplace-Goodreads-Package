@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/joinGroup', function ($request, $response) {
+$app->post('/api/Goodreads/joinGroup', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

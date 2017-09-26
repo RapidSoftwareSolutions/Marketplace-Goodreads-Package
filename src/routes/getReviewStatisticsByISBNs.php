@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getReviewStatisticsByISBNs', function ($request, $response) {
+$app->post('/api/Goodreads/getReviewStatisticsByISBNs', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

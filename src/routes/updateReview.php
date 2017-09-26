@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/updateReview', function ($request, $response) {
+$app->post('/api/Goodreads/updateReview', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

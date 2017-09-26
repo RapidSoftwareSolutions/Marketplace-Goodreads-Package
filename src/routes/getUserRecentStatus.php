@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getUserRecentStatus', function ($request, $response) {
+$app->post('/api/Goodreads/getUserRecentStatus', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/declineFriendRequest', function ($request, $response) {
+$app->post('/api/Goodreads/declineFriendRequest', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

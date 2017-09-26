@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/addBooksToMultipleShelves', function ($request, $response) {
+$app->post('/api/Goodreads/addBooksToMultipleShelves', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

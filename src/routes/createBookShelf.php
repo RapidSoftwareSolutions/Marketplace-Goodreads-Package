@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/createBookShelf', function ($request, $response) {
+$app->post('/api/Goodreads/createBookShelf', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

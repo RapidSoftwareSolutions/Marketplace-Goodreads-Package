@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getPeopleUserIsFollowing', function ($request, $response) {
+$app->post('/api/Goodreads/getPeopleUserIsFollowing', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

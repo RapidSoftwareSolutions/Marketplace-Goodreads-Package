@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/deleteOwnedBook', function ($request, $response) {
+$app->post('/api/Goodreads/deleteOwnedBook', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

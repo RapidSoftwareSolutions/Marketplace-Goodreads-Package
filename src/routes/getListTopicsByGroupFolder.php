@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getListTopicsByGroupFolder', function ($request, $response) {
+$app->post('/api/Goodreads/getListTopicsByGroupFolder', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

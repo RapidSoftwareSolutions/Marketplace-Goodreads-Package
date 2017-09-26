@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/addBookToShelf', function ($request, $response) {
+$app->post('/api/Goodreads/addBookToShelf', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
@@ -20,7 +20,7 @@ $app->post('/api/GoodReads/addBookToShelf', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
+
 
 
     $query_str = "https://www.goodreads.com/shelf/add_to_shelf.xml";

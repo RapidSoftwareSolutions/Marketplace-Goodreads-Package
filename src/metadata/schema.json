@@ -1,6 +1,6 @@
 {
-    "package": "GoodReads",
-    "tagline": "GoodReads API",
+    "package": "Goodreads",
+    "tagline": "Goodreads API",
     "description": "Read thousands of book reviews by your friends and other Goodreads members, keep a virtual bookshelf of what you've read, and build your to-read list as you discover great books on the website.Goodreads is a free service for everyone who reads. We have more than 35 million members who have added more than 1 billion books.",
     "image": "https:\/\/logo.clearbit.com\/www.goodreads.com",
     "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-GoodReads-Package",

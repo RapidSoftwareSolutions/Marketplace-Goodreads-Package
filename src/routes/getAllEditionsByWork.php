@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getAllEditionsByWork', function ($request, $response) {
+$app->post('/api/Goodreads/getAllEditionsByWork', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

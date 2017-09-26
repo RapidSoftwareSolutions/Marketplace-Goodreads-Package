@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getAccessCredentials', function ($request, $response) {
+$app->post('/api/Goodreads/getAccessCredentials', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

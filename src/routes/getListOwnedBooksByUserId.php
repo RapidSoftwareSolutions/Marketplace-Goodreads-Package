@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getListOwnedBooksByUserId', function ($request, $response) {
+$app->post('/api/Goodreads/getListOwnedBooksByUserId', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

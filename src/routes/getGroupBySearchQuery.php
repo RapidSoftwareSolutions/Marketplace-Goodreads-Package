@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getGroupBySearchQuery', function ($request, $response) {
+$app->post('/api/Goodreads/getGroupBySearchQuery', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

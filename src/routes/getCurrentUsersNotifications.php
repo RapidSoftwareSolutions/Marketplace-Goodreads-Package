@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getCurrentUsersNotifications', function ($request, $response) {
+$app->post('/api/Goodreads/getCurrentUsersNotifications', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

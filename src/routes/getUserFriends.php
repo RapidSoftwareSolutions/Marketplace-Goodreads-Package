@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getUserFriends', function ($request, $response) {
+$app->post('/api/Goodreads/getUserFriends', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

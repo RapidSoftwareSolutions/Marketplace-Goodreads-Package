@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/unlikeResource', function ($request, $response) {
+$app->post('/api/Goodreads/unlikeResource', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

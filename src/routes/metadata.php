@@ -1,6 +1,6 @@
 <?php
 
-$app->get('/api/GoodReads', function ($request, $response, $args) {
+$app->get('/api/Goodreads', function ($request, $response, $args) {
     $schema = file_get_contents(__DIR__ . '/../../src/metadata/schema.json');
     $metadata = new Models\Metadata($schema);
     $result = $metadata->create();

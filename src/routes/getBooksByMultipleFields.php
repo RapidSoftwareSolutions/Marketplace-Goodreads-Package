@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getBooksByMultipleFields', function ($request, $response) {
+$app->post('/api/Goodreads/getBooksByMultipleFields', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

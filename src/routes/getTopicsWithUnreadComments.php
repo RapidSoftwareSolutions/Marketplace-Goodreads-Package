@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getTopicsWithUnreadComments', function ($request, $response) {
+$app->post('/api/Goodreads/getTopicsWithUnreadComments', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

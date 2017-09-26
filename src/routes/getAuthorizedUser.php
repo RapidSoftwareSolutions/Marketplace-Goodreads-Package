@@ -4,7 +4,7 @@
 //    GuzzleHttp\Handler\CurlHandler,
 //    GuzzleHttp\Subscriber\Oauth\Oauth1;
 
-$app->post('/api/GoodReads/getAuthorizedUser', function ($request, $response) {
+$app->post('/api/Goodreads/getAuthorizedUser', function ($request, $response) {
 
 
 

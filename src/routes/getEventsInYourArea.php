@@ -1,6 +1,6 @@
 <?php
 
-$app->post('/api/GoodReads/getEventsInYourArea', function ($request, $response) {
+$app->post('/api/Goodreads/getEventsInYourArea', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;

@@ -1,10 +1,15 @@
 <?php
 
-$app->post('/api/GoodReads/addFriend', function ($request, $response) {
+$app->post('/api/Goodreads/addFriend', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
     $validateRes = $checkRequest->validate($request, ['apiKey','apiSecret','accessToken','accessTokenSecret']);
+
+
+
+
+
 
     if(!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback']=='error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
@@ -20,12 +25,7 @@ $app->post('/api/GoodReads/addFriend', function ($request, $response) {
 
     $data = \Models\Params::createParams($requiredParams, $optionalParams, $post_data['args']);
 
-    
-
-
     $query_str = "https://www.goodreads.com/friend/add_as_friend.xml";
-
-    
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
     $requestParams['headers'] = [];
