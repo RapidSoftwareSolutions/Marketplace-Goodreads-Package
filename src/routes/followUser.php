@@ -22,7 +22,7 @@ $app->post('/api/Goodreads/followUser', function ($request, $response) {
     
 
 
-    $query_str = "http://www.goodreads.com/user/{$data['userId']}/followers?format=xml";
+    $query_str = "https://www.goodreads.com/user/{$data['userId']}/followers?format=xml";
 
     
 

@@ -22,12 +22,11 @@ $app->post('/api/Goodreads/followAnAuthor', function ($request, $response) {
     
 
 
-    $query_str = "http://www.goodreads.com/author_followings?id={$data['id']}&format=xml";
+    $query_str = "https://www.goodreads.com/author_followings";
 
     
 
     $requestParams = \Models\Params::createRequestBody($data, $bodyParams);
-
 
     $stack = GuzzleHttp\HandlerStack::create();
     $middleware = new GuzzleHttp\Subscriber\Oauth\Oauth1([
@@ -41,6 +40,9 @@ $app->post('/api/Goodreads/followAnAuthor', function ($request, $response) {
         'handler' => $stack,
         'auth' => 'oauth'
     ]);
+
+    $requestParams['query']['id'] = $data['id'];
+    $requestParams['query']['format'] = 'xml';
 
 
     try {

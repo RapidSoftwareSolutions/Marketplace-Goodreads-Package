@@ -22,7 +22,7 @@ $app->post('/api/Goodreads/unfollowAnAuthor', function ($request, $response) {
     
 
 
-    $query_str = "http://www.goodreads.com/author_followings/{$data['id']}?format=xml";
+    $query_str = "https://www.goodreads.com/author_followings/{$data['id']}?format=xml";
 
     
 
